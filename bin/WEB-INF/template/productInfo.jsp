@@ -23,6 +23,10 @@
 					<span style="color: #f60;">{{=it.data.specification}}</span>
 				</div>
 				<div style="margin-top: 10px;">
+					<span style="color: #aaa;">联系电话：</span>
+					<span>{{=it.data.telephone}}</span>
+				</div>
+				<div style="margin-top: 10px;">
 					<span style="color: #aaa;">公司名称：</span>
 					<span>{{=it.data.enterprise.name}}</span>
 				</div>

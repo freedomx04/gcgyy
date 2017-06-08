@@ -156,7 +156,7 @@
 					},
 					success: function(data) {
 						self.$tar.html(self.$tempTar.doT({
-							pageSize: $k.constant.pageSize,
+							pageSize: 40,
 							count: data.data.length,
 							data: data.data
 						}));
@@ -176,7 +176,7 @@
 					type: "POST",
 					data: {
 						page: page,
-						size: $k.constant.pageSize
+						size: 40
 					},
 					success: function(data) {
 						self.$tar.find("#product-list").html($(".template.ProductAllList").doT({
