@@ -1,0 +1,70 @@
+.am-offcanvas-bar {
+	overflow-y: visible;
+	/* min-height: 650px; */
+    background-color: #ececec;
+}
+.am-selected {
+    width: 100%;
+}
+.am-selected-btn.am-btn-default{
+	background-color:#ffffff;
+}
+.am-selected-status {
+	line-height: 1.6;
+}
+.am-selected-list {
+    height: 150px!important;
+	overflow: auto!important;
+}
+.am-modal-hd{
+	font-weight:bold;	
+}
+.scroll-modal{
+	overflow:auto;height:500px;
+}
+ .am-form-group {
+    margin-bottom: 1rem;
+}
+.white-border{
+    border: 1px solid #ffffff;
+}
+.sorting_asc,.sorting_desc,.sorting{
+	vertical-align: middle!important;
+}
+/*.am-table tr th{
+    min-width:120px;
+}*/
+.am-table tr th.table-id{
+    /* min-width: 40px; */
+}
+.am-table tr th.table-check{
+    /* min-width: 20px; */
+}
+ .am-form-group {
+    margin-bottom: 1rem;
+}
+
+input.error { border: 1px solid red!important; }
+em.error {
+  color: red;
+  background:url("./img/unchecked.gif") no-repeat 0px 5px;
+  padding-left: 16px;
+}
+em.success {
+  background:url("./img/checked.gif") no-repeat 0px 5px;
+  padding-left: 16px;
+  color:#0060bf;
+}
+
+.dataTables_wrapper {
+	position: static;
+	clear: none;
+}
+
+select, input {
+	 line-height: initial!important;
+}
+
+li.error {
+	list-style: none;
+}

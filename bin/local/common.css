@@ -1,0 +1,13 @@
+body img {
+	max-width: 100%;
+}
+
+.hm-form-required {
+	color: red;
+	margin-right: 5px;
+	position: relative;
+	top: 4px;
+	font-size: 18px;
+}
+
+

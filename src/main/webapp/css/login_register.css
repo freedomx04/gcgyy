@@ -1,0 +1,154 @@
+body{
+	/* background:#eff7f9; */
+	font-size: 16px;
+	font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/** 登录页面   **/
+.top {
+	width: 1000px;
+    margin: 0 auto;
+    padding: 25px 0 10px;
+    font-size: 1.5em;
+    text-align: center;
+}
+#login_bg {
+    background-image: url(../img/login_bg.jpg);
+    background-size: cover;
+    -moz-background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+	width: 1000px;
+    margin: 0 auto;
+}
+.login {
+    height: 0;
+    margin: 0 auto;
+    position: relative;
+    width: 1000px;
+    zoom: 1;
+    z-index: 120;
+}
+.login_form {
+    position: absolute;
+    right: 30px;
+    top: 70px;
+    float: right;
+    width: 320px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.login_title {
+    text-align: center;
+    font-size: 18px;
+    color: #333333;
+    padding: 13px 0;
+    border-bottom: 1px solid #dee3e6;
+}
+.login_form form {
+	width: 85%;
+	margin: 0 auto;
+}
+.footer {
+	width: 100%;
+	text-align: center;
+	padding-top: 20px;
+	font-size: 14px;
+}
+
+/** 注册页面  **/
+.header {
+    padding: 10px 20px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-bottom: 1px solid #d7d8da;
+    font-size: 14px;
+}
+.header_title {
+	width: 100%;
+	display: table;
+}
+.header_title span {
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 1.8rem;
+}
+.headerBtn {
+    border: 1px solid #aaa;
+    padding: 6px 17px;
+    text-align: center;
+    color: #999;
+    cursor: pointer;
+    margin-top: 3px;
+    text-decoration: none;
+    border-radius: 3px;
+    float: right;
+    display: table-cell;
+	vertical-align: middle;
+}
+.main {
+    width: 90%;
+    margin: auto;
+    color: #a1a1a1;
+}
+.container {
+	width: 392px;
+	margin: 40px auto;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #fff;
+    padding: 26px;
+	box-shadow: 0 3px 10px 2px rgba(0,0,0,.05),0 5px 20px 4px rgba(0,0,0,.05);
+    -weblit-box-shadow: 0 3px 10px 2px rgba(0,0,0,.05),0 5px 20px 4px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 3px 10px 2px rgba(0,0,0,.05),0 5px 20px 4px rgba(0,0,0,.05);
+    -ms-box-shadow: 0 3px 10px 2px rgba(0,0,0,.05),0 5px 20px 4px rgba(0,0,0,.05);
+}
+.am-form-group input {
+    outline: 0!important;
+    border: 0!important;
+    font-size: 14px!important;
+    padding: 13px 0px!important;
+	background-color: #f5f5f5!important;
+    border-radius: 3px!important;
+    -moz-border-radius: 3px!important;
+    -webkit-border-radius: 3px!important;
+}
+#validate-btn {
+	padding: 13px 20px!important;
+}
+#registerBtn {
+	padding: 13px 0;
+}
+.warnningDiv {
+	padding: 7px 17px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-clip: padding-box;
+    background: #ffd0d0;
+    color: #ce4040;
+}
+.text-black {
+	color: #000000!important;
+}
+
+em.error {
+  color: red;
+  background:url("../img/unchecked.gif") no-repeat 0px 5px;
+  padding-left: 16px;
+}
+em.success {
+  background:url("./img/checked.gif") no-repeat 0px 5px;
+  padding-left: 16px;
+  color: #0060bf;
+}
