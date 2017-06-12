@@ -256,12 +256,12 @@
 		</div>
 		
 		<div style="text-align: center;">
+			<div class="footer"></div>
 			<div style="display: inline-block; vertical-align: middle;">
 				<script type="text/javascript">
 					document.write(unescape("%3Cspan id='_ideConac' %3E%3C/span%3E%3Cscript  src='http://dcs.conac.cn/js/15/225/0839/41095134/CA152250839410951340004.js' type='text/javascript'%3E%3C/script%3E"));
 				</script>
 			</div>
-			<div class="footer"></div>
 		</div>
 	</div>
 	
