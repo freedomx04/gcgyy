@@ -2,7 +2,7 @@
 <script class="template Profit" type="text/x-jquery-tmpl">
 	<div class="admin-content">
     	<div class="am-cf am-padding">
-      		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">主营业务收入</strong></div>
+      		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">利润总额</strong></div>
     	</div>
 
     	<div class="am-g">
