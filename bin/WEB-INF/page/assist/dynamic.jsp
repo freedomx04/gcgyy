@@ -52,7 +52,7 @@
 	    			<div class="am-u-sm-2 am-text-left">
 						<button type="button" class="am-btn am-btn-secondary">
    						<i class="am-icon-cloud-upload"></i> 选择图片</button>
- 						<input id="upload-file-input" name="uploadImage" type="file" accept="image/*">
+ 						<input id="upload-file-input" name="uploadImage" type="file" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp">
  					</div>
 	    			<div class="am-u-sm-9">
 	      				<input type="text" id="imagePath" name="imagePath" class="am-form-field" style="line-height:normal;"/>
@@ -81,7 +81,6 @@
    		</div>
 	</div>
 </script>
-
 <script class="template DynamicList" type="text/x-jquery-tmpl">
 <thead>
 	<tr>
@@ -104,7 +103,9 @@
 	{{~}}
 </tbody>
 </script>
+<link type="text/css" rel="stylesheet" href="./js/ueditor/third-party/video-js/video-js.css"/>
 
+<script language="javascript" type="text/javascript" src="./js/ueditor/third-party/video-js/video.js"></script>
 <script type="text/javascript">
 ;(function( $ ) {
 	
