@@ -461,7 +461,7 @@
 			toolbars: [
 	           ['source', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 
 	            '|', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', '|' ,'fontfamily', 'fontsize', '|', 'insertorderedlist', 'insertunorderedlist', 'simpleupload',
-	           '|' ,'indent', '|', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', '|', 'link', 'unlink', '|', 'horizontal', 'date', 'insertvideo']
+	           '|' ,'indent', '|', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', '|', 'link', 'unlink', '|', 'horizontal', 'date', 'insertvideo', 'attachment']
 	        ],
 	        zIndex: 10000,
 	     	autoHeightEnabled: true,
