@@ -459,7 +459,7 @@
 	$k.util.ueditor = function(name) {
 		var ue = UE.getEditor(name, {
 			toolbars: [
-	           ['undo', 'redo', '|', 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 
+	           ['source', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 
 	            '|', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', '|' ,'fontfamily', 'fontsize', '|', 'insertorderedlist', 'insertunorderedlist', 'simpleupload',
 	           '|' ,'indent', '|', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', '|', 'link', 'unlink', '|', 'horizontal', 'date', 'insertvideo']
 	        ],
