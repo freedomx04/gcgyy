@@ -59,6 +59,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/html/**").addResourceLocations("file:" + uploadPath + "/html/");
 		// 添加图文链接file映射
 		registry.addResourceHandler("/file/**").addResourceLocations("file:" + uploadPath + "/file/");
+		// 添加图文编辑video映射
+		registry.addResourceHandler("/ueditor/**").addResourceLocations("file:" + uploadPath + "/ueditor/");
 		super.addResourceHandlers(registry);
 	}
 }
