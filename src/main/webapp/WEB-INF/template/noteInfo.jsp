@@ -7,7 +7,6 @@
 	<div style="text-align:right;padding: 0px 20px 0px 20px;margin:0;">{{=$k.util.getDateString(it.data.createTime)}}</div>
     <div class="meta"></div>
 	<div class="content">
-		<iframe class="video_iframe" style="z-index:1;" src="https://v.qq.com/iframe/player.html?vid=b0024klavvp&tiny=0&auto=0" allowfullscreen="" frameborder="0" height="375" width="500"></iframe>
 		{{=it.data.content}}
 	</div>
 </div>
