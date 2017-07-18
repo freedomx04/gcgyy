@@ -7,7 +7,8 @@
 	<div style="text-align:right;padding: 0px 20px 0px 20px;margin:0;">{{=$k.util.getDateString(it.data.createTime)}}</div>
     <div class="meta"></div>
 	<div class="content">
-		<iframe id="articleIframe" src="{{=it.data.linkPath}}" width="100%" scrolling="yes" style="min-height: 850px;"></iframe>
+		<iframe class="video_iframe" style="z-index:1;" src="https://v.qq.com/iframe/player.html?vid=b0024klavvp&tiny=0&auto=0" allowfullscreen="" frameborder="0" height="375" width="500"></iframe>
+		{{=it.data.content}}
 	</div>
 </div>
 </script>
@@ -41,20 +42,6 @@
 						self.$tar.html(self.$tempTar.doT({
 							data: data.data
 						}));
-						setTimeout(function() {
-							var iframe = document.getElementById("articleIframe");
-							try{
-								var bHeight = iframe.contentWindow.document.body.scrollHeight;
-								var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-								var height = Math.max(bHeight, dHeight);
-								//var bWidth = iframe.contentWindow.document.body.scrollWidth;
-								//var dWidth = iframe.contentWindow.document.documentElement.scrollWidth;
-								//var width = Math.max(bWidth, dWidth);
-								iframe.height = height + 50;
-								//$(".noteList").width(width + $(".news").width() + 80);
-								//iframe.width = width;
-							}catch (ex){}
-						}, 300);
 					},
 					error: function() {}
 				});

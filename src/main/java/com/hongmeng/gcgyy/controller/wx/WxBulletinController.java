@@ -41,6 +41,8 @@ public class WxBulletinController {
 		
 		File file = new File(uploadPath + File.separator + bulletin.getLinkPath());
 		String content = FileUtils.readFileToString(file, "UTF-8");
+		content.replaceAll("<embed>", "<iframe>");
+		content.replaceAll("</embed>", "</iframe>");
 		
 		// 懒加载图片
 		content = content.replaceAll("src", "data-src");

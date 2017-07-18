@@ -1,13 +1,16 @@
 package com.hongmeng.gcgyy.controller.setting;
 
+import java.io.File;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +28,10 @@ import com.hongmeng.gcgyy.service.setting.DynamicService;
 public class DynamicController {
 
 	static Logger log = LoggerFactory.getLogger(DynamicController.class);
-
+	
+	@Value("${customize.path.upload}")
+	private String uploadPath;
+	
 	@Autowired
 	DynamicService dynamicService;
 
@@ -123,6 +129,12 @@ public class DynamicController {
 	public Output detail(@RequestParam Long dynamicId) {
 		try {
 			DynamicEntity dynamic = dynamicService.findOne(dynamicId);
+			File file = new File(uploadPath + File.separator + dynamic.getLinkPath());
+			String content = FileUtils.readFileToString(file, "UTF-8");
+			content = content.replaceAll("<embed>", "<iframe>")
+					.replaceAll("</embed>", "</iframe>");
+			
+			dynamic.setContent(content);
 			return new Output(dynamic, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

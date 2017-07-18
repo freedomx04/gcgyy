@@ -63,7 +63,9 @@ public class WxEnterpriseController {
 		String content = FileUtils.readFileToString(file, "UTF-8");
 		
 		// 懒加载图片
-		content = content.replaceAll("src", "data-src");
+		content = content.replaceAll("src", "data-src")
+				.replaceAll("<embed>", "<iframe>")
+				.replaceAll("</embed>", "</iframe>");
 		news.setContent(content);
 		
 		modelMap.addAttribute("news", news);
