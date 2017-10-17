@@ -32,7 +32,7 @@
 			height: 270px;
 			background-color: #f8f8f8;
 			text-align: left;
-			margin-right: 12px;
+			margin-right: 6px;
 		}
 		.portal .announce_menu, 
 		.portal .overview_menu,
@@ -101,8 +101,16 @@
 	</style>
 
 </head>
-<body style="height: 100%; margin: 0 auto; min-width: 1024px; width: 1024px; padding: 0; font-size: 14px; color: #686868; /* background-image: url('./img/background.jpg'); */ background-repeat: repeat-x;">
-	<div class="portal">
+<body style="height: 100%; margin: 0 auto; min-width: 1024px; width: 1024px; padding: 0; font-size: 14px; 
+	color: #686868; background: url('./img/shijiuda/shijiuda_bg.jpg') no-repeat center top;">
+	
+	<!-- add by yiyun 2017.10.17 -->
+	<a href="http://news.qq.com/zt2017/nineteen/index.htm" target="_blank" title="中国共产党第十九次全国代表大会"
+		style="display: block; width: 1024px; height: 120px;">
+		<span style="width: 180px; height: 72px; position: absolute; left: 15px; top: 20px; background-image: url('./img/shijiuda/shijiuda_logo.png');"></span>
+	</a>
+	
+	<div class="portal" style="background-color: #fff;">
 		<div class="top"></div>
 		
 		<div class="platform">
@@ -136,7 +144,7 @@
 			</div>
 			<div>
 				<div class="main">
-					<div class="unit" style="float: left; margin-right: 12px;"></div> 
+					<div class="unit" style="float: left; margin-right: 6px; margin-left: 10px;"></div> 
 				
 					<div class="announce border">
 						<div class="announce_menu">
@@ -152,7 +160,7 @@
 			
 			<div class="main">
 			
-				<div class="policy border" style="margin-top: 20px;clear: both;">
+				<div class="policy border" style="margin-top: 20px;clear: both; margin-left: 10px;">
 					<div class="policy_menu">
 						<ul>
 							<li class="float-left" style="width: 80px;">政策法规</li>
@@ -162,7 +170,7 @@
 					<div class="policy-list"></div>
 				</div>
 				
-				<div class="overview border" style="margin: 0; margin-top: 20px;">
+				<div class="overview border" style="margin-top: 20px;">
 					<div class="overview_menu">
 						<ul>
 							<li class="float-left" style="width: 80px;">工业信息</li>
