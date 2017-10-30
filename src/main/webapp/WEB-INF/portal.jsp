@@ -102,13 +102,7 @@
 
 </head>
 <body style="height: 100%; margin: 0 auto; min-width: 1024px; width: 1024px; padding: 0; font-size: 14px; 
-	color: #686868; background: url('./img/shijiuda/shijiuda_bg.jpg') no-repeat center top;">
-	
-	<!-- add by yiyun 2017.10.17 -->
-	<a href="http://news.qq.com/zt2017/nineteen/index.htm" target="_blank" title="中国共产党第十九次全国代表大会"
-		style="display: block; width: 1024px; height: 120px;">
-		<span style="width: 180px; height: 72px; position: absolute; left: 15px; top: 20px; background-image: url('./img/shijiuda/shijiuda_logo.png');"></span>
-	</a>
+	color: #686868;">
 	
 	<div class="portal" style="background-color: #fff;">
 		<div class="top"></div>
