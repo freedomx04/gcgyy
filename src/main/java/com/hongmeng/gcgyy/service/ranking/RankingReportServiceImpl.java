@@ -66,16 +66,16 @@ public class RankingReportServiceImpl implements RankingReportService {
 	public static HashMap<Integer, String> templateTitle = new HashMap<Integer, String>() {{
 		put(RankingReportType.INDUSTRYADDITION, "工业增加值");
 		put(RankingReportType.MAINBUSINESS, "主营业务收入");
-		put(RankingReportType.PROFITTAX, "利税总额");
+		put(RankingReportType.PROFITTAX, "主营业务成本");
 		put(RankingReportType.ELECTRICITY, "工业用电");
 		put(RankingReportType.INDUSTRYOUTPUT, "工业总产值");
-		put(RankingReportType.VAT, "增值税");
+		put(RankingReportType.VAT, "亏损企业亏损总额");
 		put(RankingReportType.PROFIT, "利润总额");
 	}};
 	
 	@SuppressWarnings("serial")
 	public static HashMap<Integer, String> reportColumn = new HashMap<Integer, String>() {{
-		put(RankingReportType.INDUSTRYADDITION, "monthly, county, total, year_growth, sort");
+		put(RankingReportType.INDUSTRYADDITION, "monthly, county, month_growth, total_growth, sort");
 		put(RankingReportType.MAINBUSINESS, "monthly, county, total, year_growth, sort");
 		put(RankingReportType.PROFITTAX, "monthly, county, total, year_growth, absolute_sort");
 		put(RankingReportType.ELECTRICITY, "monthly, county, total_electricity, year_growth, sort");
@@ -94,6 +94,8 @@ public class RankingReportServiceImpl implements RankingReportService {
 		put("sort", new ExcelCell("sort", 4000, "增幅排序"));
 		put("absolute_sort", new ExcelCell("sort", 4000, "绝对额排序"));
 		put("enterprise_num", new ExcelCell("enterprise_num", 4000, "企业户数"));
+		put("month_growth", new ExcelCell("month_growth", 4000, "当月增幅"));
+		put("total_growth", new ExcelCell("total_growth", 4000, "累计增幅"));
 	}};
 
 	@Override
@@ -191,8 +193,8 @@ public class RankingReportServiceImpl implements RankingReportService {
 				case RankingReportType.INDUSTRYADDITION:
 					IndustryAdditionEntity addition = additionService.findOne(monthly, county.getId());
 					if (addition != null) {
-						addition.setTotal(total);
-						addition.setYearGrowth(yearGrowth);
+						addition.setMonthGrowth(total);
+						addition.setTotalGrowth(yearGrowth);
 						addition.setSort(sort);
 						additionService.save(addition);
 					} else {
@@ -413,11 +415,11 @@ public class RankingReportServiceImpl implements RankingReportService {
 				row.createCell(1).setCellValue(county.getName());
 				
 				if (addition != null) {
-					if (addition.getTotal() != null) {
-						row.createCell(2).setCellValue(addition.getTotal());
+					if (addition.getMonthGrowth() != null) {
+						row.createCell(2).setCellValue(addition.getMonthGrowth());
 					}
-					if (addition.getYearGrowth() != null) {
-						row.createCell(3).setCellValue(addition.getYearGrowth());
+					if (addition.getTotalGrowth() != null) {
+						row.createCell(3).setCellValue(addition.getTotalGrowth());
 					}
 					if (addition.getSort() != null) {
 						row.createCell(4).setCellValue(addition.getSort());

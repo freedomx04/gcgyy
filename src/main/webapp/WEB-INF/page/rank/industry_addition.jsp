@@ -83,16 +83,16 @@
 			  	</div>
 
 				<div class="am-form-group">
-					<label for="total" class="am-u-sm-3 am-form-label font-normal">本月止累计(万元):</label>
+					<label for="total" class="am-u-sm-3 am-form-label font-normal">当月增幅±%:</label>
 		    		<div class="am-u-sm-9 padding-left-o">
-						<input type="text" name="total" id="total" class="am-form-field"/>
+						<input type="text" name="monthGrowth" id="monthGrowth" class="am-form-field"/>
 		    		</div>
 				</div>
 		
 				<div class="am-form-group">
-					<label for="yearGrowth" class="am-u-sm-3 am-form-label font-normal">同比±%:</label>
+					<label for="yearGrowth" class="am-u-sm-3 am-form-label font-normal">累计增幅±%:</label>
 		    		<div class="am-u-sm-9 padding-left-o">
-						<input type="text" name="yearGrowth" id="yearGrowth" class="am-form-field"/>
+						<input type="text" name="totalGrowth" id="totalGrowth" class="am-form-field"/>
 		    		</div>
 				</div>
 
@@ -117,8 +117,8 @@
 		{{?it.editable}}<th><input type='checkbox' class='box_all' name='box'/></th>{{?}}
 		<th>#</th>
 		<th>县区名称</th>
-		<th>本月止累计(万元)</th>
-		<th>同比±%</th>
+		<th>当月增幅±%</th>
+		<th>累计增幅±%</th>
 		<th>增幅排序</th>
 	</tr>
 </thead>
@@ -128,8 +128,8 @@
 			{{?it.editable}}<td><input type='checkbox' class='box' name='box'/></td>{{?}}
 			<td id="{{=industryAddition.id}}">{{=index+1}}</td>
 			<td class="ellipsis">{{=(industryAddition.county != null ? industryAddition.county.name : "" )}}</td>
-			<td>{{=industryAddition.total != null ? industryAddition.total : ""}}</td>
-			<td>{{=industryAddition.yearGrowth != null ? industryAddition.yearGrowth.toFixed(2) : ""}}</td>
+			<td>{{=industryAddition.monthGrowth != null ? industryAddition.monthGrowth.toFixed(2) : ""}}</td>
+			<td>{{=industryAddition.totalGrowth != null ? industryAddition.totalGrowth.toFixed(2) : ""}}</td>
 			<td>{{=industryAddition.sort || ""}}</td>
 		</tr>
 	{{~}}
@@ -213,8 +213,8 @@
 														monthly: monthly,
 														countyId: $industryAdditionInputForm.find("#county").val(),
 														additionId: $industryAdditionInputForm.find("#id").val(),
-														total: $industryAdditionInputForm.find("#total").val(),
-														yearGrowth: $industryAdditionInputForm.find("#yearGrowth").val(),
+														monthGrowth: $industryAdditionInputForm.find("#monthGrowth").val(),
+														totalGrowth: $industryAdditionInputForm.find("#totalGrowth").val(),
 														sort: $industryAdditionInputForm.find("#sort").val()
 													},
 													success: function(data) {

@@ -34,7 +34,7 @@ public class IndustryAdditionController {
 	CountyService countyService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Output add(String monthly, Long countyId, Double total, Double yearGrowth, Integer sort) {
+	public Output add(String monthly, Long countyId, Double monthGrowth, Double totalGrowth, Integer sort) {
 		try {
 			IndustryAdditionEntity addition = additionService.findOne(monthly, countyId);
 			if (addition != null) {
@@ -42,7 +42,7 @@ public class IndustryAdditionController {
 			}
 
 			CountyEntity county = countyService.findOne(countyId);
-			addition = new IndustryAdditionEntity(monthly, county, total, yearGrowth, sort);
+			addition = new IndustryAdditionEntity(monthly, county, monthGrowth, totalGrowth, sort);
 			addition.setCreateTime(new Date());
 			additionService.save(addition);
 
@@ -54,11 +54,11 @@ public class IndustryAdditionController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public Output add(Long additionId, String monthly, Long countyId, Double total, Double yearGrowth, Integer sort) {
+	public Output add(Long additionId, String monthly, Long countyId, Double monthGrowth, Double totalGrowth, Integer sort) {
 		try {
 			IndustryAdditionEntity addition = additionService.findOne(additionId);
-			addition.setTotal(total);
-			addition.setYearGrowth(yearGrowth);
+			addition.setMonthGrowth(monthGrowth);
+			addition.setTotalGrowth(totalGrowth);
 			addition.setSort(sort);
 
 			additionService.save(addition);

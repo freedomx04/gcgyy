@@ -19,9 +19,9 @@ public class IndustryAdditionEntity extends BaseEntity {
 	@JoinColumn(name = "county_id")
 	private CountyEntity county; // 县区
 
-	private Double total; // 本月止累计
+	private Double monthGrowth; // 当月增幅
 
-	private Double yearGrowth; // 同比增长
+	private Double totalGrowth; // 累计增幅
 
 	private Integer sort; // 增幅排序
 
@@ -35,12 +35,12 @@ public class IndustryAdditionEntity extends BaseEntity {
 		this.county = county;
 	}
 
-	public IndustryAdditionEntity(String monthly, CountyEntity county, Double total, Double yearGrowth, Integer sort) {
+	public IndustryAdditionEntity(String monthly, CountyEntity county, Double monthGrowth, Double totalGrowth, Integer sort) {
 		super();
 		this.monthly = monthly;
 		this.county = county;
-		this.total = total;
-		this.yearGrowth = yearGrowth;
+		this.monthGrowth = monthGrowth;
+		this.totalGrowth = totalGrowth;
 		this.sort = sort;
 	}
 
@@ -60,20 +60,20 @@ public class IndustryAdditionEntity extends BaseEntity {
 		this.county = county;
 	}
 
-	public Double getTotal() {
-		return total;
+	public Double getMonthGrowth() {
+		return monthGrowth;
 	}
 
-	public void setTotal(Double total) {
-		this.total = total;
+	public void setMonthGrowth(Double monthGrowth) {
+		this.monthGrowth = monthGrowth;
 	}
 
-	public Double getYearGrowth() {
-		return yearGrowth;
+	public Double getTotalGrowth() {
+		return totalGrowth;
 	}
 
-	public void setYearGrowth(Double yearGrowth) {
-		this.yearGrowth = yearGrowth;
+	public void setTotalGrowth(Double totalGrowth) {
+		this.totalGrowth = totalGrowth;
 	}
 
 	public Integer getSort() {

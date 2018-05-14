@@ -2,7 +2,7 @@
 <script class="template ProfitTax" type="text/x-jquery-tmpl">
 	<div class="admin-content">
     	<div class="am-cf am-padding">
-      		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">利税总额</strong></div>
+      		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">主营业务成本</strong></div>
     	</div>
 
     	<div class="am-g">

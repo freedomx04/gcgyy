@@ -317,9 +317,6 @@ li.admin-parent > a {
 								<li class="reportMainBusiness module clickable" module="reportMainBusiness">
 				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 主营业务收入</a>
 				            	</li>			
-								<li class="reportProfitTax module clickable" module="reportProfitTax">
-				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 利税总额</a>
-				            	</li>
 								<li class="reportProfit module clickable" module="reportProfit">
 				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 利润总额</a>
 				            	</li>
@@ -329,8 +326,11 @@ li.admin-parent > a {
 								<li class="reportIndustryOutput module clickable" module="reportIndustryOutput">
 				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 工业总产值</a>
 				            	</li>
+								<li class="reportProfitTax module clickable" module="reportProfitTax">
+				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 主营业务成本</a>
+				            	</li>
 								<li class="reportVat module clickable" module="reportVat">
-				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 增值税</a>
+				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 亏损企业亏损总额</a>
 				            	</li>	
 							</ul>	
 						</li>

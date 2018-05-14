@@ -2,7 +2,7 @@
 <script class="template Vat" type="text/x-jquery-tmpl">
 	<div class="admin-content">
     	<div class="am-cf am-padding">
-      		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">增值税</strong></div>
+      		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">亏损企业亏损总额</strong></div>
     	</div>
 
     	<div class="am-g">
