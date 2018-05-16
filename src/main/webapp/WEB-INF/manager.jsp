@@ -423,9 +423,6 @@ li.admin-parent > a {
 								<li class="readMainBusiness module clickable" module="readMainBusiness">
 				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 主营业务收入</a>
 				            	</li>			
-								<li class="readProfitTax module clickable" module="readProfitTax">
-				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 利税总额</a>
-				            	</li>
 								<li class="readProfit module clickable" module="readProfit">
 				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 利润总额</a>
 				            	</li>
@@ -435,8 +432,11 @@ li.admin-parent > a {
 								<li class="readIndustryOutput module clickable" module="readIndustryOutput">
 				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 工业总产值</a>
 				            	</li>
+								<li class="readProfitTax module clickable" module="readProfitTax">
+				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 主营业务成本</a>
+				            	</li>
 								<li class="readVat module clickable" module="readVat">
-				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 增值税</a>
+				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 亏损企业亏损总额</a>
 				            	</li>	
 							</ul>	
 						</li>
