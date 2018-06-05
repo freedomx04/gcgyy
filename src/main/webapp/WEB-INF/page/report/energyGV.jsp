@@ -87,13 +87,6 @@
 				     <input type="text" name="electricity" id="electricity" class="am-form-field" />
 		     	</div>
 			  </div>
-			  
-			 <div class="am-form-group">
-			    <label for="" class="am-u-sm-4 am-form-label font-normal">本月用气量(立方米):</label>
-			    <div class="am-u-sm-8 padding-left-o">
-				     <input type="text" name="gas" id="gas" class="am-form-field" />
-		     	</div>
-			  </div>
 		</form>
 		<button type="button" class="am-btn am-btn-primary am-hide" data-am-modal-cancel>确定</button>
     </div>
@@ -111,7 +104,6 @@
 		<th class="table-id">#</th>
 		<th class="table-name">企业名称</th>
 	    <th>本月用电量（度）</th>
-	    <th>本月用气量（立方米）</th>
 	</tr>
 </thead>
 <tbody>
@@ -121,7 +113,6 @@
 		<td id="{{=data.energy_current != null ? data.energy_current.id : ""}}">{{=index+1}}</td>
 		<td class="td-title ellipsis" title="{{=data.enterprise.name}}">{{=data.enterprise!=null ? data.enterprise.name : ""}}</td>
 		<td class="am-text-primary">{{=data.energy_current != null ? data.energy_current.electricity : "-"}}</td>
-		<td class="am-text-primary">{{=data.energy_current != null ? data.energy_current.gas : "-"}}</td>
 	</tr>
 	{{~}}
 </tbody>
@@ -175,7 +166,6 @@
 												monthly: monthly,
 												enterpriseId: $energyInputForm.find("#enterpriseId").val(),
 												electricity: $energyInputForm.find("#electricity").val(),
-												gas: $energyInputForm.find("#gas").val()
 											},
 											success: function(data) {
 												if(data.status == 3) {
@@ -246,7 +236,6 @@
 														monthly: monthly,
 														enterpriseId: $energyInputForm.find("#enterpriseId").val(),
 														electricity: $energyInputForm.find("#electricity").val(),
-														gas: $energyInputForm.find("#gas").val()
 													},
 													success: function(data) {
 														$tar.find(".monthly").val(monthly);
@@ -416,10 +405,6 @@
 				    	  enterpriseId: "required",
 				    	  monthly: "required",
 				    	  electricity: {
-				    		  required: true,
-				    		  number: true
-				    	  },
-				    	  gas: {
 				    		  required: true,
 				    		  number: true
 				    	  }

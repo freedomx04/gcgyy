@@ -42,11 +42,10 @@ public class EconomicServiceImpl implements EconomicService {
 	}
 
 	@Override
-	public void update(EconomicEntity economic, String monthly, BaseEnterpriseEntity enterprise, float industryAddition,
-			float mainBusiness, float profit, float tax) {
+	public void update(EconomicEntity economic, String monthly, BaseEnterpriseEntity enterprise, float mainBusiness,
+			float profit, float tax) {
 		economic.setMonthly(monthly);
 		economic.setEnterprise(enterprise);
-		economic.setIndustryAddition(industryAddition);
 		economic.setMainBusiness(mainBusiness);
 		economic.setProfit(profit);
 		economic.setTax(tax);
@@ -95,7 +94,6 @@ public class EconomicServiceImpl implements EconomicService {
 		EconomicVO ret = new EconomicVO(monthly, economic, economic_lastYear, economic_lastMonth);
 
 		EconomicEntity economic_current_endMonth = sumEndMonthEconomic(economic.getMonthly(), economic.getEnterprise());
-		ret.setIndustryAddition_current_endMonth(economic_current_endMonth.getIndustryAddition());
 		ret.setMainBusiness_current_endMonth(economic_current_endMonth.getMainBusiness());
 
 		String year = FormulaUtils.getYear(economic.getMonthly());
@@ -103,31 +101,21 @@ public class EconomicServiceImpl implements EconomicService {
 				year);
 		if (target != null) {
 			ret.setIndustryAddition_Target(target);
-			ret.setIndustryAddition_complete(
-					FormulaUtils.getPercent(economic_current_endMonth.getIndustryAddition(), target.getValue()));
 		}
 
 		if (economic_lastYear != null) {
-			ret.setIndustryAddition_yearGrowth(
-					FormulaUtils.getGrowth(economic.getIndustryAddition(), economic_lastYear.getIndustryAddition()));
 			ret.setMainBusiness_yearGrowth(
 					FormulaUtils.getGrowth(economic.getMainBusiness(), economic_lastYear.getMainBusiness()));
 			ret.setProfit_yearGrowth(FormulaUtils.getGrowth(economic.getProfit(), economic_lastYear.getProfit()));
 			ret.setTax_yearGrowth(FormulaUtils.getGrowth(economic.getTax(), economic_lastYear.getTax()));
 
 			EconomicEntity economic_lastYear_endMonth = sumEndMonthEconomic(monthly_lastYear, economic.getEnterprise());
-			ret.setIndustryAddition_lastYear_endMonth(economic_lastYear_endMonth.getIndustryAddition());
 			ret.setMainBusiness_lastYear_endMonth(economic_lastYear_endMonth.getMainBusiness());
-
-			ret.setIndustryAddition_endMonth_yearGrowth(FormulaUtils.getGrowth(
-					ret.getIndustryAddition_current_endMonth(), ret.getIndustryAddition_lastYear_endMonth()));
 			ret.setMainBusiness_endMonth_yearGrowth(FormulaUtils.getGrowth(ret.getMainBusiness_current_endMonth(),
 					ret.getMainBusiness_lastYear_endMonth()));
 		}
 
 		if (economic_lastMonth != null) {
-			ret.setIndustryAddition_monthGrowth(
-					FormulaUtils.getGrowth(economic.getIndustryAddition(), economic_lastMonth.getIndustryAddition()));
 			ret.setMainBusiness_monthGrowth(
 					FormulaUtils.getGrowth(economic.getMainBusiness(), economic_lastMonth.getMainBusiness()));
 			ret.setProfit_monthGrowth(FormulaUtils.getGrowth(economic.getProfit(), economic_lastMonth.getProfit()));
@@ -143,12 +131,6 @@ public class EconomicServiceImpl implements EconomicService {
 		Long enterpriseId = enterprise.getId();
 
 		EconomicEntity economic_current = economicRepository.findByMonthlyAndEnterpriseId(monthly, enterpriseId);
-/*		if (economic_current != null && economic_current.getStatus() < ApproveStatus.REPORT) {
-			ret = new EconomicVO(monthly, null, null, null);
-			ret.setEnterprise(enterprise);
-			return ret;
-		}*/
-		
 		String monthly_lastYear = FormulaUtils.getLastYearMonthly(monthly);
 		EconomicEntity economic_lastYear = economicRepository.findByMonthlyAndEnterpriseId(monthly_lastYear,
 				enterpriseId);
@@ -160,20 +142,15 @@ public class EconomicServiceImpl implements EconomicService {
 		ret.setEnterprise(enterprise);
 
 		EconomicEntity economic_current_endMonth = sumEndMonthEconomic(monthly, enterprise);
-		ret.setIndustryAddition_current_endMonth(economic_current_endMonth.getIndustryAddition());
 		ret.setMainBusiness_current_endMonth(economic_current_endMonth.getMainBusiness());
 
 		String year = FormulaUtils.getYear(monthly);
 		EconomicTargetEntity target = targetRepository.findByEnterpriseIdAndYear(enterpriseId, year);
 		if (target != null) {
 			ret.setIndustryAddition_Target(target);
-			ret.setIndustryAddition_complete(
-					FormulaUtils.getPercent(economic_current_endMonth.getIndustryAddition(), target.getValue()));
 		}
 
 		if (economic_current != null && economic_lastYear != null) {
-			ret.setIndustryAddition_yearGrowth(FormulaUtils.getGrowth(economic_current.getIndustryAddition(),
-					economic_lastYear.getIndustryAddition()));
 			ret.setMainBusiness_yearGrowth(
 					FormulaUtils.getGrowth(economic_current.getMainBusiness(), economic_lastYear.getMainBusiness()));
 			ret.setProfit_yearGrowth(
@@ -181,18 +158,12 @@ public class EconomicServiceImpl implements EconomicService {
 			ret.setTax_yearGrowth(FormulaUtils.getGrowth(economic_current.getTax(), economic_lastYear.getTax()));
 
 			EconomicEntity economic_lastYear_endMonth = sumEndMonthEconomic(monthly_lastYear, enterprise);
-			ret.setIndustryAddition_lastYear_endMonth(economic_lastYear_endMonth.getIndustryAddition());
 			ret.setMainBusiness_lastYear_endMonth(economic_lastYear_endMonth.getMainBusiness());
-
-			ret.setIndustryAddition_endMonth_yearGrowth(FormulaUtils.getGrowth(
-					ret.getIndustryAddition_current_endMonth(), ret.getIndustryAddition_lastYear_endMonth()));
 			ret.setMainBusiness_endMonth_yearGrowth(FormulaUtils.getGrowth(ret.getMainBusiness_current_endMonth(),
 					ret.getMainBusiness_lastYear_endMonth()));
 		}
 
 		if (economic_current != null && economic_lastMonth != null) {
-			ret.setIndustryAddition_monthGrowth(FormulaUtils.getGrowth(economic_current.getIndustryAddition(),
-					economic_lastMonth.getIndustryAddition()));
 			ret.setMainBusiness_monthGrowth(
 					FormulaUtils.getGrowth(economic_current.getMainBusiness(), economic_lastMonth.getMainBusiness()));
 			ret.setProfit_monthGrowth(
@@ -209,14 +180,12 @@ public class EconomicServiceImpl implements EconomicService {
 				enterprise.getId());
 
 		String totle_monthly = "";
-		float industryAddition_totle = 0;
 		float mainBusiness_totle = 0;
 		for (EconomicEntity econ : economics) {
 			totle_monthly += econ.getMonthly() + ",";
-			industryAddition_totle += econ.getIndustryAddition();
 			mainBusiness_totle += econ.getMainBusiness();
 		}
-		EconomicEntity ret = new EconomicEntity(totle_monthly, enterprise, industryAddition_totle, mainBusiness_totle);
+		EconomicEntity ret = new EconomicEntity(totle_monthly, enterprise, mainBusiness_totle);
 		return ret;
 	}
 
@@ -233,66 +202,52 @@ public class EconomicServiceImpl implements EconomicService {
 	@Override
 	public EconomicVO sumEnterpriseEconomic(String monthly, List<BaseEnterpriseEntity> enterpriseList) {
 		// current
-		float industryAddition_current_totle = 0;
 		float mainBusiness_current_totle = 0;
 		float profit_current_totle = 0;
 		float tax_current_totle = 0;
-		float industryAddition_endMonth_current_totle = 0;
 		float mainBusiness_endMonth_current_totle = 0;
 		float industryAddition_target_totle = 0;
 
 		String year = FormulaUtils.getYear(monthly);
 		List<EconomicEntity> economicList = listByMonthlyAndEnterpriseIn(monthly, enterpriseList);
 		for (EconomicEntity economic : economicList) {
-//			if (economic.getStatus() == ApproveStatus.PASS) {
-				industryAddition_current_totle += economic.getIndustryAddition();
-				mainBusiness_current_totle += economic.getMainBusiness();
-				profit_current_totle += economic.getProfit();
-				tax_current_totle += economic.getTax();
-//			}
+			mainBusiness_current_totle += economic.getMainBusiness();
+			profit_current_totle += economic.getProfit();
+			tax_current_totle += economic.getTax();
 
 			EconomicEntity economic_endMonth = sumEndMonthEconomic(monthly, economic.getEnterprise());
-			industryAddition_endMonth_current_totle += economic_endMonth.getIndustryAddition();
 			mainBusiness_endMonth_current_totle += economic_endMonth.getMainBusiness();
 
-			EconomicTargetEntity target = targetRepository.findByEnterpriseIdAndYear(economic.getEnterprise().getId(), year);
+			EconomicTargetEntity target = targetRepository.findByEnterpriseIdAndYear(economic.getEnterprise().getId(),
+					year);
 			if (target != null) {
 				industryAddition_target_totle += target.getValue();
 			}
 		}
-		EconomicEntity economic_current_totle = new EconomicEntity(monthly, null, industryAddition_current_totle,
-				mainBusiness_current_totle, profit_current_totle, tax_current_totle);
+		EconomicEntity economic_current_totle = new EconomicEntity(monthly, null, mainBusiness_current_totle,
+				profit_current_totle, tax_current_totle);
 
 		// last year
 		String monthly_lastYear = FormulaUtils.getLastYearMonthly(monthly);
-		float industryAddition_lastYear_totle = 0;
 		float mainBusiness_lastYear_totle = 0;
 		float profit_lastYear_totle = 0;
 		float tax_lastYear_totle = 0;
-		float industryAddition_endMonth_lastYear_totle = 0;
 		float mainBusiness_endMonth_lastYear_totle = 0;
 		List<EconomicEntity> economicList_lastYear = listByMonthlyAndEnterpriseIn(monthly_lastYear, enterpriseList);
 		for (EconomicEntity economic : economicList_lastYear) {
-//			if (economic.getStatus() == ApproveStatus.PASS) {
-				industryAddition_lastYear_totle += economic.getIndustryAddition();
-				mainBusiness_lastYear_totle += economic.getMainBusiness();
-				profit_lastYear_totle += economic.getProfit();
-				tax_lastYear_totle += economic.getTax();
-//			}
+			mainBusiness_lastYear_totle += economic.getMainBusiness();
+			profit_lastYear_totle += economic.getProfit();
+			tax_lastYear_totle += economic.getTax();
 
 			EconomicEntity economic_endMonth = sumEndMonthEconomic(monthly_lastYear, economic.getEnterprise());
-			industryAddition_endMonth_lastYear_totle += economic_endMonth.getIndustryAddition();
 			mainBusiness_endMonth_lastYear_totle += economic_endMonth.getMainBusiness();
 		}
-		EconomicEntity economic_lastYear_totle = new EconomicEntity(monthly_lastYear, null,
-				industryAddition_lastYear_totle, mainBusiness_lastYear_totle, profit_lastYear_totle,
-				tax_lastYear_totle);
+		EconomicEntity economic_lastYear_totle = new EconomicEntity(monthly_lastYear, null, mainBusiness_lastYear_totle,
+				profit_lastYear_totle, tax_lastYear_totle);
 
 		EconomicVO ret = new EconomicVO(monthly, economic_current_totle, economic_lastYear_totle);
 
 		// 同比
-		ret.setIndustryAddition_yearGrowth(FormulaUtils.getGrowth(economic_current_totle.getIndustryAddition(),
-				economic_lastYear_totle.getIndustryAddition()));
 		ret.setMainBusiness_yearGrowth(FormulaUtils.getGrowth(economic_current_totle.getMainBusiness(),
 				economic_lastYear_totle.getMainBusiness()));
 		ret.setProfit_yearGrowth(
@@ -301,11 +256,9 @@ public class EconomicServiceImpl implements EconomicService {
 				FormulaUtils.getGrowth(economic_current_totle.getTax(), economic_lastYear_totle.getTax()));
 
 		// 本月止
-		ret.setIndustryAddition_current_endMonth(industryAddition_endMonth_current_totle);
 		ret.setMainBusiness_current_endMonth(mainBusiness_endMonth_current_totle);
 
 		// 去年同期本月止
-		ret.setIndustryAddition_lastYear_endMonth(industryAddition_endMonth_lastYear_totle);
 		ret.setMainBusiness_lastYear_endMonth(mainBusiness_endMonth_lastYear_totle);
 
 		ret.setIndustryAddition_endMonth_yearGrowth(FormulaUtils.getGrowth(ret.getIndustryAddition_current_endMonth(),
@@ -315,8 +268,6 @@ public class EconomicServiceImpl implements EconomicService {
 
 		EconomicTargetEntity target = new EconomicTargetEntity(null, year, industryAddition_target_totle);
 		ret.setIndustryAddition_Target(target);
-		ret.setIndustryAddition_complete(
-				FormulaUtils.getPercent(industryAddition_endMonth_current_totle, industryAddition_target_totle));
 
 		return ret;
 	}
@@ -324,65 +275,50 @@ public class EconomicServiceImpl implements EconomicService {
 	@Override
 	public EconomicVO sumEnterpriseEconomic2(String monthly, List<BaseEnterpriseEntity> enterpriseList) {
 		// current
-		float industryAddition_current_totle = 0;
 		float mainBusiness_current_totle = 0;
 		float profit_current_totle = 0;
 		float tax_current_totle = 0;
 		List<EconomicEntity> economicList = listByMonthlyAndEnterpriseIn(monthly, enterpriseList);
 		for (EconomicEntity economic : economicList) {
-//			if (economic.getStatus() == ApproveStatus.PASS) {
-				industryAddition_current_totle += economic.getIndustryAddition();
-				mainBusiness_current_totle += economic.getMainBusiness();
-				profit_current_totle += economic.getProfit();
-				tax_current_totle += economic.getTax();
-//			}
+			mainBusiness_current_totle += economic.getMainBusiness();
+			profit_current_totle += economic.getProfit();
+			tax_current_totle += economic.getTax();
 		}
-		EconomicEntity economic_current_totle = new EconomicEntity(monthly, null, industryAddition_current_totle,
-				mainBusiness_current_totle, profit_current_totle, tax_current_totle);
+		EconomicEntity economic_current_totle = new EconomicEntity(monthly, null, mainBusiness_current_totle,
+				profit_current_totle, tax_current_totle);
 
 		// last year
 		String monthly_lastYear = FormulaUtils.getLastYearMonthly(monthly);
-		float industryAddition_lastYear_totle = 0;
 		float mainBusiness_lastYear_totle = 0;
 		float profit_lastYear_totle = 0;
 		float tax_lastYear_totle = 0;
 		List<EconomicEntity> economicList_lastYear = listByMonthlyAndEnterpriseIn(monthly_lastYear, enterpriseList);
 		for (EconomicEntity economic : economicList_lastYear) {
-//			if (economic.getStatus() == ApproveStatus.PASS) {
-				industryAddition_lastYear_totle += economic.getIndustryAddition();
-				mainBusiness_lastYear_totle += economic.getMainBusiness();
-				profit_lastYear_totle += economic.getProfit();
-				tax_lastYear_totle += economic.getTax();
-//			}
+			mainBusiness_lastYear_totle += economic.getMainBusiness();
+			profit_lastYear_totle += economic.getProfit();
+			tax_lastYear_totle += economic.getTax();
 		}
-		EconomicEntity economic_lastYear_totle = new EconomicEntity(monthly_lastYear, null,
-				industryAddition_lastYear_totle, mainBusiness_lastYear_totle, profit_lastYear_totle,
-				tax_lastYear_totle);
+		EconomicEntity economic_lastYear_totle = new EconomicEntity(monthly_lastYear, null, mainBusiness_lastYear_totle,
+				profit_lastYear_totle, tax_lastYear_totle);
 
 		// last month
 		String monthly_lastMonth = FormulaUtils.getLastMonthMonthly(monthly);
-		float industryAddition_lastMonth_totle = 0;
 		float mainBusiness_lastMonth_totle = 0;
 		float profit_lastMonth_totle = 0;
 		float tax_lastMonth_totle = 0;
 		List<EconomicEntity> economicList_lastMonth = listByMonthlyAndEnterpriseIn(monthly_lastMonth, enterpriseList);
 		for (EconomicEntity economic : economicList_lastMonth) {
-//			if (economic.getStatus() == ApproveStatus.PASS) {
-				industryAddition_lastMonth_totle += economic.getIndustryAddition();
-				mainBusiness_lastMonth_totle += economic.getMainBusiness();
-				profit_lastMonth_totle += economic.getProfit();
-				tax_lastMonth_totle += economic.getTax();
-//			}
+			mainBusiness_lastMonth_totle += economic.getMainBusiness();
+			profit_lastMonth_totle += economic.getProfit();
+			tax_lastMonth_totle += economic.getTax();
 		}
 		EconomicEntity economic_lastMonth_totle = new EconomicEntity(monthly_lastMonth, null,
-				industryAddition_lastMonth_totle, mainBusiness_lastMonth_totle, profit_lastMonth_totle,
-				tax_lastMonth_totle);
+				mainBusiness_lastMonth_totle, profit_lastMonth_totle, tax_lastMonth_totle);
 
-		EconomicVO ret = new EconomicVO(monthly, economic_current_totle, economic_lastYear_totle, economic_lastMonth_totle);
+		EconomicVO ret = new EconomicVO(monthly, economic_current_totle, economic_lastYear_totle,
+				economic_lastMonth_totle);
 
 		// 同比增幅
-		ret.setIndustryAddition_yearGrowth(FormulaUtils.getGrowth(economic_current_totle.getIndustryAddition(),
-				economic_lastYear_totle.getIndustryAddition()));
 		ret.setMainBusiness_yearGrowth(FormulaUtils.getGrowth(economic_current_totle.getMainBusiness(),
 				economic_lastYear_totle.getMainBusiness()));
 		ret.setProfit_yearGrowth(
@@ -391,8 +327,6 @@ public class EconomicServiceImpl implements EconomicService {
 				FormulaUtils.getGrowth(economic_current_totle.getTax(), economic_lastYear_totle.getTax()));
 
 		// 环比增幅
-		ret.setIndustryAddition_monthGrowth(FormulaUtils.getGrowth(economic_current_totle.getIndustryAddition(),
-				economic_lastMonth_totle.getIndustryAddition()));
 		ret.setMainBusiness_monthGrowth(FormulaUtils.getGrowth(economic_current_totle.getMainBusiness(),
 				economic_lastMonth_totle.getMainBusiness()));
 		ret.setProfit_monthGrowth(
@@ -454,11 +388,6 @@ public class EconomicServiceImpl implements EconomicService {
 		EconomicEntity economic_lastMonth = economicRepository.findByMonthlyAndEnterpriseId(monthly_lastMonth,
 				economic.getEnterprise().getId());
 		EconomicVO ret = new EconomicVO(monthly, economic, null, economic_lastMonth);
-
-		if (economic_lastMonth != null) {
-			ret.setIndustryAddition_monthGrowth(
-					FormulaUtils.getGrowth(economic.getIndustryAddition(), economic_lastMonth.getIndustryAddition()));
-		}
 		return ret;
 	}
 

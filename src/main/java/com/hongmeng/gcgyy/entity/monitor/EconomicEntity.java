@@ -11,19 +11,10 @@ import com.hongmeng.gcgyy.entity.BaseEntity;
 import com.hongmeng.gcgyy.entity.authority.BaseEnterpriseEntity;
 
 @Entity
-@Table(name = "monitor_economic", indexes = { 
-	@Index(name = "index_economic_monthly", columnList = "monthly"),
-	@Index(name = "index_economic_enterprise", columnList = "enterprise_id"),
-	@Index(name = "index_economic_monthly_enterprise", columnList = "monthly, enterprise_id") 
-})
+@Table(name = "monitor_economic", indexes = { @Index(name = "index_economic_monthly", columnList = "monthly"),
+		@Index(name = "index_economic_enterprise", columnList = "enterprise_id"),
+		@Index(name = "index_economic_monthly_enterprise", columnList = "monthly, enterprise_id") })
 public class EconomicEntity extends BaseEntity {
-
-/*	public class ApproveStatus {
-		public static final int REJECT = -1;
-		public static final int NEW = 0;
-		public static final int REPORT = 1;
-		public static final int PASS = 2;
-	}*/
 
 	private String monthly; // 月报表时间
 
@@ -31,32 +22,26 @@ public class EconomicEntity extends BaseEntity {
 	@JoinColumn(name = "enterprise_id")
 	private BaseEnterpriseEntity enterprise; // 企业
 
-	private float industryAddition = 0; // 本月止工业总产值
-
 	private float mainBusiness = 0; // 本月止主营业务收入
 
 	private float profit = 0; // 本月止利润总额
 
 	private float tax = 0; // 本月止税金总额
 
-//	private Integer status = ApproveStatus.NEW; // 上报状态
-
 	public EconomicEntity() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EconomicEntity(String monthly, BaseEnterpriseEntity enterprise, float industryAddition, float mainBusiness) {
+	public EconomicEntity(String monthly, BaseEnterpriseEntity enterprise, float mainBusiness) {
 		this.monthly = monthly;
 		this.enterprise = enterprise;
-		this.industryAddition = industryAddition;
 		this.mainBusiness = mainBusiness;
 	}
 
-	public EconomicEntity(String monthly, BaseEnterpriseEntity enterprise, float industryAddition, float mainBusiness,
-			float profit, float tax) {
+	public EconomicEntity(String monthly, BaseEnterpriseEntity enterprise, float mainBusiness, float profit,
+			float tax) {
 		this.monthly = monthly;
 		this.enterprise = enterprise;
-		this.industryAddition = industryAddition;
 		this.mainBusiness = mainBusiness;
 		this.profit = profit;
 		this.tax = tax;
@@ -76,14 +61,6 @@ public class EconomicEntity extends BaseEntity {
 
 	public void setEnterprise(BaseEnterpriseEntity enterprise) {
 		this.enterprise = enterprise;
-	}
-
-	public float getIndustryAddition() {
-		return industryAddition;
-	}
-
-	public void setIndustryAddition(float industryAddition) {
-		this.industryAddition = industryAddition;
 	}
 
 	public float getMainBusiness() {
@@ -109,13 +86,5 @@ public class EconomicEntity extends BaseEntity {
 	public void setTax(float tax) {
 		this.tax = tax;
 	}
-
-/*	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}*/
 
 }

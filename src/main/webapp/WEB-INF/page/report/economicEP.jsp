@@ -3,7 +3,7 @@
 <div class="admin-content economicEP" style="height: auto!important;">
 
 	<div class="am-cf am-padding">
-		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">工业总产值与主营业务收入</strong></div>
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">主要指标</strong></div>
 	</div>
 
 	<div class="am-g">

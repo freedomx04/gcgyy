@@ -44,14 +44,10 @@ public class AlertServiceImpl implements AlertService {
 		alert.setEconomic_lastYear(economic_lastYear);
 		alert.setEconomic_lastMonth(economic_lastMonth);
 		if (economic_lastYear != null && economic_current != null) {
-			alert.setIndustryAddition_yearGrowth(FormulaUtils.getGrowth(economic_current.getIndustryAddition(),
-					economic_lastYear.getIndustryAddition()));
 			alert.setMainBusiness_yearGrowth(
 					FormulaUtils.getGrowth(economic_current.getMainBusiness(), economic_lastYear.getMainBusiness()));
 		}
 		if (economic_lastMonth != null && economic_current != null) {
-			alert.setIndustryAddition_monthGrowth(FormulaUtils.getGrowth(economic_current.getIndustryAddition(),
-					economic_lastMonth.getIndustryAddition()));
 			alert.setMainBusiness_monthGrowth(
 					FormulaUtils.getGrowth(economic_current.getMainBusiness(), economic_lastMonth.getMainBusiness()));
 		}
@@ -95,12 +91,10 @@ public class AlertServiceImpl implements AlertService {
 		if (energy_lastYear != null && energy_current != null) {
 			alert.setElectricity_yearGrowth(
 					FormulaUtils.getGrowth(energy_current.getElectricity(), energy_lastYear.getElectricity()));
-			alert.setGas_yearGrowth(FormulaUtils.getGrowth(energy_current.getGas(), energy_lastYear.getGas()));
 		}
 		if (energy_lastMonth != null && energy_current != null) {
 			alert.setElectricity_monthGrowth(
 					FormulaUtils.getGrowth(energy_current.getElectricity(), energy_lastMonth.getElectricity()));
-			alert.setGas_monthGrowth(FormulaUtils.getGrowth(energy_current.getGas(), energy_lastMonth.getGas()));
 		}
 
 		return alert;

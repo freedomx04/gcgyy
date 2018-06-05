@@ -3,7 +3,7 @@
 <div class="admin-content economicGV" style="height: auto!important;">
 
 	<div class="am-cf am-padding">
-		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">工业总产值与主营业务收入</strong></div>
+		<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">主要指标</strong></div>
 	</div>
 
 	<div class="am-g">
@@ -81,13 +81,6 @@
 		     	</div>
 			  </div>
 
-			  <div class="am-form-group">
-			    <label for="" class="am-u-sm-4 am-form-label font-normal">本月止工业总产值(千元):</label>
-			    <div class="am-u-sm-8 padding-left-o">
-				     <input type="text" name="industryAddition" id="industryAddition" class="am-form-field" />
-		     	</div>
-			  </div>
-			  
 			 <div class="am-form-group">
 			    <label for="" class="am-u-sm-4 am-form-label font-normal">本月止主营业务收入(千元):</label>
 			    <div class="am-u-sm-8 padding-left-o">
@@ -133,15 +126,9 @@
 		{{??}}
 		{{?}}
 		</th>
-	    <th>本月止工业总产值(千元)</th>
 	    <th>本月止主营业务收入(千元)</th>
 		<th>本月止利润总额(千元)</th>
 	    <th>本月止税金总额(千元)</th>
-		<!--
-		<th>本月止累计工业总产值(千元)</th>
-	    <th>本月止累计主营业务收入(千元)</th>
-		<th>工业总产值年度目标数(千元)</th>
-		<th>主营业务收入年度目标数(千元)</th>-->
 	</tr>
 </thead>
 <tbody>
@@ -156,16 +143,9 @@
 		{{}else{ }}
 		<td>{{=data.monthly || ""}}</td>
 		{{}}}
-		<td class="am-text-primary">{{=data.economic_current !=null ? data.economic_current.industryAddition : "-"}}</td>
 		<td class="am-text-primary">{{=data.economic_current !=null ? data.economic_current.mainBusiness : "-"}}</td>
 		<td class="am-text-primary">{{=data.economic_current !=null ? data.economic_current.profit : "-"}}</td>
 		<td class="am-text-primary">{{=data.economic_current !=null ? data.economic_current.tax : "-"}}</td>
-		<!--
-		<td class="am-text-primary">{{=data.industryAddition_current_endMonth}}</td>
-		<td class="am-text-primary">{{=data.mainBusiness_current_endMonth}}</td>
-		<td target="{{=data.mainBusiness_Target!=null ?data.mainBusiness_Target.id : ""}}">{{=data.mainBusiness_Target!=null ?data.mainBusiness_Target.value : "-"}}</td>
-		<td target="{{=data.mainBusiness_Target!=null ?data.mainBusiness_Target.id : ""}}">{{=data.mainBusiness_Target!=null ?data.mainBusiness_Target.value : "-"}}</td>
-		-->
 	</tr>
 	{{~}}
 </tbody>
@@ -217,7 +197,6 @@
 											data:{
 												monthly: monthly,
 												enterpriseId: $tar.find("#enterpriseId").val(),
-												industryAddition: $economicInputForm.find("#industryAddition").val(),
 												mainBusiness: $economicInputForm.find("#mainBusiness").val(),
 												profit: $economicInputForm.find("#profit").val(),
 												tax: $economicInputForm.find("#tax").val()
@@ -289,7 +268,6 @@
 														economicId: $economicInputForm.find("#id").val(),
 														monthly: monthly,
 														enterpriseId: $tar.find("#enterpriseId").val(),
-														industryAddition: $economicInputForm.find("#industryAddition").val(),
 														mainBusiness: $economicInputForm.find("#mainBusiness").val(),
 														profit: $economicInputForm.find("#profit").val(),
 														tax: $economicInputForm.find("#tax").val()
@@ -455,10 +433,6 @@
 				      rules: {
 				    	  enterpriseId: "required",
 				    	  monthly: "required",
-				    	  industryAddition: {
-				    		  required: true,
-				    		  number: true
-				    	  },
 				    	  mainBusiness: {
 				    		  required: true,
 				    		  number: true

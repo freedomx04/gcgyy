@@ -77,9 +77,6 @@
 				},{
 					name: "企业预警",
 					value: "monitor_warning"
-				}, {
-					name: "积分排名",
-					value: "monitor_ranking"
 				}]
 			},  {
 				name: "全市排名",

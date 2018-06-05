@@ -282,9 +282,6 @@ li.admin-parent > a {
 								<li class="economicEP module clickable" module="economicEP">
 				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 主要指标</a>
 				            	</li>			
-								<li class="benefitEP module clickable" module="benefitEP">
-				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 效益指标</a>
-				            	</li>	
 								{{?}}
 								{{? it.resource.indexOf('agency_department') > -1}}
 								<li class="module clickable" module="energyGV">
@@ -295,9 +292,6 @@ li.admin-parent > a {
 				            	</li>
 								<li class="economicGV module clickable" module="economicGV">
 				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 主要指标</a>
-				            	</li>
-								<li class="benefitGV module clickable" module="benefitGV">
-				            		<a class="am-cf"><span class="am-icon-skype am-icon-fw"></span> 效益指标</a>
 				            	</li>
 								{{?}}
 							</ul>	
@@ -345,14 +339,16 @@ li.admin-parent > a {
 							<ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav4">
 							{{ var arr = ['工业总产值', '主营业务收入', '利润总额', '税金总额', '用电量', '用气量', '国税', '地税', '应收账款', '产存品存货', '资产累计', '负债累计'];}}
 							{{~ arr: item: index}}
-								{{? it.resource.indexOf('agency_enterprise') > -1}}
-								<li class="module clickable" module="targetEP" type="enterpriseTarget-{{=index+1}}" id="collapse-nav-4.{{=index+1}}">
-				            		<a class="am-cf">{{=item}}及增幅图表</a>
-				            	</li>
-								{{??}}
-								<li class="module clickable" module="target" type="enterpriseTarget-{{=index+1}}" id="collapse-nav-4.{{=index+1}}">
-				            		<a class="am-cf">{{=item}}及增幅图表</a>
-				            	</li>
+								{{? item == '主营业务收入' || item == '利润总额' || item == '税金总额' || item == '用电量' || item == '国税' || item == '地税'}}
+									{{? it.resource.indexOf('agency_enterprise') > -1}}
+									<li class="module clickable" module="targetEP" type="enterpriseTarget-{{=index+1}}" id="collapse-nav-4.{{=index+1}}">
+				            			<a class="am-cf">{{=item}}及增幅图表</a>
+				            		</li>
+									{{??}}
+									<li class="module clickable" module="target" type="enterpriseTarget-{{=index+1}}" id="collapse-nav-4.{{=index+1}}">
+				            			<a class="am-cf">{{=item}}及增幅图表</a>
+				            		</li>
+									{{?}}
 								{{?}}
 							{{~}}
 							</ul>
@@ -368,9 +364,11 @@ li.admin-parent > a {
 							<ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav5">
 							{{ var arr = ['工业总产值', '主营业务收入', '利润总额', '税金总额', '用电量', '用气量', '国税', '地税', '应收账款', '产存品存货', '资产累计', '负债累计'];}}
 							{{~ arr: item: index}}
+								{{? item == '主营业务收入' || item == '利润总额' || item == '税金总额' || item == '用电量' || item == '国税' || item == '地税'}}
 								<li class="module clickable" module="target" type="businessTarget-{{=index+1}}" id="collapse-nav-5.{{=index+1}}">
 				            		<a class="am-cf">{{=item}}及增幅图表</a>
 				            	</li>
+								{{?}}
 							{{~}}
 							</ul>
 						</li>
@@ -385,9 +383,11 @@ li.admin-parent > a {
 							<ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav6">
 							{{ var arr = ['工业总产值', '主营业务收入', '利润总额', '税金总额', '用电量', '用气量', '国税', '地税', '应收账款', '产存品存货', '资产累计', '负债累计'];}}
 							{{~ arr: item: index}}
+								{{? item == '主营业务收入' || item == '利润总额' || item == '税金总额' || item == '用电量' || item == '国税' || item == '地税'}}
 								<li class="module clickable" module="target" type="areaTarget-{{=index+1}}" id="collapse-nav-6.{{=index+1}}">
 				            		<a class="am-cf">{{=item}}及增幅图表</a>
 				            	</li>
+								{{?}}
 							{{~}}
 							</ul>
 						</li>
@@ -402,9 +402,11 @@ li.admin-parent > a {
 							<ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav7">
 							{{ var arr = ['工业总产值', '主营业务收入', '利润总额', '税金总额', '用电量', '用气量', '国税', '地税', '应收账款', '产存品存货', '资产累计', '负债累计'];}}
 							{{~ arr: item: index}}
+								{{? item == '主营业务收入' || item == '利润总额' || item == '税金总额' || item == '用电量' || item == '国税' || item == '地税'}}
 								<li class="module clickable" module="target" type="pointEnterpriseTarget-{{=index+1}}" id="collapse-nav-7.{{=index+1}}">
 				            		<a class="am-cf">{{=item}}及增幅图表</a>
 				            	</li>
+								{{?}}
 							{{~}}
 							</ul>
 						</li>
@@ -460,6 +462,7 @@ li.admin-parent > a {
 						{{?}}	
 
 						<!-- 积分排名   -->
+						<!--
 						{{? it.resource.indexOf('monitor_ranking') > -1}}
 						<li class="ranking admin-parent">
       						<a class="am-cf" data-am-collapse="{target: '#collapse-nav9'}">
@@ -478,6 +481,7 @@ li.admin-parent > a {
 							</ul>	
 						</li>
 						{{?}}
+						-->
 
 						<!-- 
 						{{? it.resource.indexOf('monitor_tax') > -1 || it.resource.indexOf('monitor_energy') > -1 

@@ -51,17 +51,16 @@ public class EconomicController {
 
 	@Autowired
 	ProductTypeService productTypeService;
-	
+
 	@Autowired
 	ReportService reportService;
-	
+
 	@Autowired
 	ScoreService scoreService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Output add(@RequestParam String monthly, @RequestParam Long enterpriseId,
-			@RequestParam float industryAddition, @RequestParam float mainBusiness, @RequestParam float profit,
-			@RequestParam float tax) {
+	public Output add(@RequestParam String monthly, @RequestParam Long enterpriseId, @RequestParam float mainBusiness,
+			@RequestParam float profit, @RequestParam float tax) {
 		try {
 			EconomicEntity economic = economicService.findOne(monthly, enterpriseId);
 			if (economic != null) {
@@ -69,11 +68,11 @@ public class EconomicController {
 			}
 
 			BaseEnterpriseEntity enterprise = enterpriseService.findOneBase(enterpriseId);
-			economic = new EconomicEntity(monthly, enterprise, industryAddition, mainBusiness, profit, tax);
+			economic = new EconomicEntity(monthly, enterprise, mainBusiness, profit, tax);
 			economic.setCreateTime(new Date());
 			economicService.save(economic);
-			
-			// ranking 
+
+			// ranking
 			ReportEntity report = reportService.findOne(ReportType.ECONOMIC);
 			if (ScoreUtils.checkReportTime(monthly, report.getDays())) {
 				ScoreEntity score = scoreService.findByEnterpriseId(enterpriseId);
@@ -81,12 +80,12 @@ public class EconomicController {
 					score = new ScoreEntity(enterprise, 0);
 					score.setCreateTime(new Date());
 				}
-				
+
 				Integer newScore = score.getScore() + 1;
 				score.setScore(newScore);
 				scoreService.save(score);
 			}
-			
+
 			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -96,12 +95,11 @@ public class EconomicController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public Output edit(@RequestParam Long economicId, @RequestParam String monthly, @RequestParam Long enterpriseId,
-			@RequestParam float industryAddition, @RequestParam float mainBusiness, @RequestParam float profit,
-			@RequestParam float tax) {
+			@RequestParam float mainBusiness, @RequestParam float profit, @RequestParam float tax) {
 		try {
 			BaseEnterpriseEntity enterprise = enterpriseService.findOneBase(enterpriseId);
 			EconomicEntity economic = economicService.findOne(economicId);
-			economicService.update(economic, monthly, enterprise, industryAddition, mainBusiness, profit, tax);
+			economicService.update(economic, monthly, enterprise, mainBusiness, profit, tax);
 			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -298,14 +296,14 @@ public class EconomicController {
 	public OutputList listRange(@RequestParam String monthlyStart, @RequestParam String monthlyEnd) {
 		try {
 			List<EconomicVO> list = new LinkedList<>();
-			
+
 			List<BaseEnterpriseEntity> enterpriseList = enterpriseService.listBase();
 			List<String> monthlyList = FormulaUtils.getMonthlyList(monthlyStart, monthlyEnd);
-			for (String monthly: monthlyList) {
+			for (String monthly : monthlyList) {
 				EconomicVO ret = economicService.sumEnterpriseEconomic2(monthly, enterpriseList);
 				list.add(ret);
 			}
-			
+
 			return new OutputList(list, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -318,17 +316,17 @@ public class EconomicController {
 			@RequestParam String monthlyEnd) {
 		try {
 			List<EconomicVO> list = new LinkedList<>();
-			
+
 			BaseEnterpriseEntity enterprise = enterpriseService.findOneBase(enterpriseId);
 			List<BaseEnterpriseEntity> enterpriseList = new LinkedList<>();
 			enterpriseList.add(enterprise);
-			
+
 			List<String> monthlyList = FormulaUtils.getMonthlyList(monthlyStart, monthlyEnd);
-			for (String monthly: monthlyList) {
+			for (String monthly : monthlyList) {
 				EconomicVO ret = economicService.detail(monthly, enterprise);
 				list.add(ret);
 			}
-			
+
 			return new OutputList(list, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -341,16 +339,16 @@ public class EconomicController {
 			@RequestParam String monthlyEnd) {
 		try {
 			List<EconomicVO> list = new LinkedList<>();
-			
+
 			ProductTypeEntity productType = productTypeService.findOne(productTypeId);
 			List<BaseEnterpriseEntity> enterpriseList = enterpriseService.listByProductTypeId(productTypeId);
 			List<String> monthlyList = FormulaUtils.getMonthlyList(monthlyStart, monthlyEnd);
-			for (String monthly: monthlyList) {
+			for (String monthly : monthlyList) {
 				EconomicVO ret = economicService.sumEnterpriseEconomic2(monthly, enterpriseList);
 				ret.setProductType(productType);
 				list.add(ret);
 			}
-			
+
 			return new OutputList(list, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -363,23 +361,23 @@ public class EconomicController {
 			@RequestParam String monthlyEnd) {
 		try {
 			List<EconomicVO> list = new LinkedList<>();
-			
+
 			AreaEntity area = areaService.findOne(areaId);
 			List<BaseEnterpriseEntity> enterpriseList = enterpriseService.listByAreaId(area.getId());
 			List<String> monthlyList = FormulaUtils.getMonthlyList(monthlyStart, monthlyEnd);
-			for (String monthly: monthlyList) {
+			for (String monthly : monthlyList) {
 				EconomicVO ret = economicService.sumEnterpriseEconomic2(monthly, enterpriseList);
 				ret.setArea(area);
 				list.add(ret);
 			}
-			
+
 			return new OutputList(list, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			return new OutputList(null, ReturnStatus.FAILED.status(), e.getMessage());
 		}
 	}
-	
+
 	@RequestMapping(value = "/listPointEnterpriseRange", method = RequestMethod.POST)
 	public OutputList listPointEnterpriseRange(@RequestParam String monthlyStart, @RequestParam String monthlyEnd) {
 		try {
@@ -398,44 +396,34 @@ public class EconomicController {
 			return new OutputList(null, ReturnStatus.FAILED.status(), e.getMessage());
 		}
 	}
-	
-	/* @RequestMapping(value = "/report", method = RequestMethod.POST)
-	public Output report(@RequestParam Long economicId) {
-		try {
-			EconomicEntity economic = economicService.findOne(economicId);
-			economic.setStatus(ApproveStatus.REPORT);
-			economicService.save(economic);
-			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			return new Output(null, ReturnStatus.FAILED.status(), e.getMessage());
-		}
-	}
-	
-	@RequestMapping(value = "/pass", method = RequestMethod.POST)
-	public Output pass(@RequestParam Long economicId) {
-		try {
-			EconomicEntity economic = economicService.findOne(economicId);
-			economic.setStatus(ApproveStatus.PASS);
-			economicService.save(economic);
-			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			return new Output(null, ReturnStatus.FAILED.status(), e.getMessage());
-		}
-	}
-	
-	@RequestMapping(value = "/reject", method = RequestMethod.POST)
-	public Output reject(@RequestParam Long economicId) {
-		try {
-			EconomicEntity economic = economicService.findOne(economicId);
-			economic.setStatus(ApproveStatus.REJECT);
-			economicService.save(economic);
-			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			return new Output(null, ReturnStatus.FAILED.status(), e.getMessage());
-		}
-	}*/
+
+	/*
+	 * @RequestMapping(value = "/report", method = RequestMethod.POST) public
+	 * Output report(@RequestParam Long economicId) { try { EconomicEntity
+	 * economic = economicService.findOne(economicId);
+	 * economic.setStatus(ApproveStatus.REPORT); economicService.save(economic);
+	 * return new Output(null, ReturnStatus.SUCCESS.status(),
+	 * ReturnStatus.SUCCESS.msg()); } catch (Exception e) {
+	 * log.error(e.getMessage(), e); return new Output(null,
+	 * ReturnStatus.FAILED.status(), e.getMessage()); } }
+	 * 
+	 * @RequestMapping(value = "/pass", method = RequestMethod.POST) public
+	 * Output pass(@RequestParam Long economicId) { try { EconomicEntity
+	 * economic = economicService.findOne(economicId);
+	 * economic.setStatus(ApproveStatus.PASS); economicService.save(economic);
+	 * return new Output(null, ReturnStatus.SUCCESS.status(),
+	 * ReturnStatus.SUCCESS.msg()); } catch (Exception e) {
+	 * log.error(e.getMessage(), e); return new Output(null,
+	 * ReturnStatus.FAILED.status(), e.getMessage()); } }
+	 * 
+	 * @RequestMapping(value = "/reject", method = RequestMethod.POST) public
+	 * Output reject(@RequestParam Long economicId) { try { EconomicEntity
+	 * economic = economicService.findOne(economicId);
+	 * economic.setStatus(ApproveStatus.REJECT); economicService.save(economic);
+	 * return new Output(null, ReturnStatus.SUCCESS.status(),
+	 * ReturnStatus.SUCCESS.msg()); } catch (Exception e) {
+	 * log.error(e.getMessage(), e); return new Output(null,
+	 * ReturnStatus.FAILED.status(), e.getMessage()); } }
+	 */
 
 }

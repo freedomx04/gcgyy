@@ -14,8 +14,8 @@ public interface EconomicService {
 
 	void save(EconomicEntity economic);
 
-	void update(EconomicEntity economic, String monthly, BaseEnterpriseEntity enterprise, float industryAddition,
-			float mainBusiness, float profit, float tax);
+	void update(EconomicEntity economic, String monthly, BaseEnterpriseEntity enterprise, float mainBusiness,
+			float profit, float tax);
 
 	void delete(List<Long> economicIds);
 
@@ -28,7 +28,7 @@ public interface EconomicService {
 	List<EconomicEntity> list(Long enterpriseId, int page, int size);
 
 	EconomicVO detail(EconomicEntity economic);
-	
+
 	EconomicVO detail(String monthly, BaseEnterpriseEntity enterprise);
 
 	List<EconomicEntity> listByMonthlyAndEnterpriseIn(String monthly, List<BaseEnterpriseEntity> list);
@@ -36,16 +36,16 @@ public interface EconomicService {
 	List<EconomicEntity> listByMonthlyInAndEnterpriseId(List<String> monthlyList, Long enterpriseId);
 
 	EconomicVO sumEnterpriseEconomic(String monthly, List<BaseEnterpriseEntity> enterpriseList);
-	
+
 	EconomicVO sumEnterpriseEconomic2(String monthly, List<BaseEnterpriseEntity> enterpriseList);
-	
+
 	// economic year target
 	EconomicTargetEntity findOneTarget(Long economicTargetId);
-	
+
 	void saveTarget(EconomicTargetEntity target);
-	
+
 	void update(EconomicTargetEntity target, String year, float value);
-	
+
 	// economic ranking
 	List<EconomicVO> listIndustryDesc(String monthly);
 

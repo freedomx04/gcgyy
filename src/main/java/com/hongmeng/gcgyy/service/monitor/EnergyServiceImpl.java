@@ -34,12 +34,10 @@ public class EnergyServiceImpl implements EnergyService {
 	}
 
 	@Override
-	public void update(EnergyEntity energy, String monthly, BaseEnterpriseEntity enterprise, float electricity,
-			float gas) {
+	public void update(EnergyEntity energy, String monthly, BaseEnterpriseEntity enterprise, float electricity) {
 		energy.setMonthly(monthly);
 		energy.setEnterprise(enterprise);
 		energy.setElectricity(electricity);
-		energy.setGas(gas);
 		energyRepository.save(energy);
 	}
 
@@ -82,18 +80,12 @@ public class EnergyServiceImpl implements EnergyService {
 			String electricity_yearGrowth = FormulaUtils.getGrowth(energy.getElectricity(),
 					lastYearEnergy.getElectricity());
 			ret.setElectricity_yearGrowth(electricity_yearGrowth);
-
-			String gas_yearGrowth = FormulaUtils.getGrowth(energy.getGas(), lastYearEnergy.getGas());
-			ret.setGas_yearGrowth(gas_yearGrowth);
 		}
 
 		if (lastMonthEnergy != null) {
 			String electricity_monthGrowth = FormulaUtils.getGrowth(energy.getElectricity(),
 					lastMonthEnergy.getElectricity());
 			ret.setElectricity_monthGrowth(electricity_monthGrowth);
-
-			String gas_monthGrowth = FormulaUtils.getGrowth(energy.getGas(), lastMonthEnergy.getGas());
-			ret.setGas_monthGrowth(gas_monthGrowth);
 		}
 
 		return ret;
@@ -115,13 +107,11 @@ public class EnergyServiceImpl implements EnergyService {
 		if (energy_current != null && energy_lastYear != null) {
 			ret.setElectricity_yearGrowth(
 					FormulaUtils.getGrowth(energy_current.getElectricity(), energy_lastYear.getElectricity()));
-			ret.setGas_yearGrowth(FormulaUtils.getGrowth(energy_current.getGas(), energy_lastYear.getGas()));
 		}
 
 		if (energy_current != null && energy_lastMonth != null) {
 			ret.setElectricity_monthGrowth(
 					FormulaUtils.getGrowth(energy_current.getElectricity(), energy_lastMonth.getElectricity()));
-			ret.setGas_monthGrowth(FormulaUtils.getGrowth(energy_current.getGas(), energy_lastMonth.getGas()));
 		}
 
 		return ret;
@@ -151,50 +141,39 @@ public class EnergyServiceImpl implements EnergyService {
 	public EnergyVO sumEnterpriseEnergy(String monthly, List<BaseEnterpriseEntity> enterpriseList) {
 		// current
 		float electricity_current_totle = 0;
-		float gas_current_totle = 0;
 		List<EnergyEntity> energyList = listByMonthlyAndEnterpriseIn(monthly, enterpriseList);
 		for (EnergyEntity energy : energyList) {
 			electricity_current_totle += energy.getElectricity();
-			gas_current_totle += energy.getGas();
 		}
-		EnergyEntity energy_current_totle = new EnergyEntity(monthly, null, electricity_current_totle,
-				gas_current_totle);
+		EnergyEntity energy_current_totle = new EnergyEntity(monthly, null, electricity_current_totle);
 
 		// last year
 		String lastYearMonthly = FormulaUtils.getLastYearMonthly(monthly);
 		float electricity_lastYear_totle = 0;
-		float gas_lastYear_totle = 0;
 		List<EnergyEntity> energyList_lastYear = listByMonthlyAndEnterpriseIn(lastYearMonthly, enterpriseList);
 		for (EnergyEntity energy : energyList_lastYear) {
 			electricity_lastYear_totle += energy.getElectricity();
-			gas_lastYear_totle += energy.getGas();
 		}
-		EnergyEntity energy_lastYear_totle = new EnergyEntity(lastYearMonthly, null, electricity_lastYear_totle,
-				gas_lastYear_totle);
+		EnergyEntity energy_lastYear_totle = new EnergyEntity(lastYearMonthly, null, electricity_lastYear_totle);
 
 		// last month
 		String lastMonthMonthly = FormulaUtils.getLastMonthMonthly(monthly);
 		float electricity_lastMonth_totle = 0;
-		float gas_lastMonth_totle = 0;
 		List<EnergyEntity> energyList_lastMonth = listByMonthlyAndEnterpriseIn(lastMonthMonthly, enterpriseList);
 		for (EnergyEntity energy : energyList_lastMonth) {
 			electricity_lastMonth_totle += energy.getElectricity();
-			gas_lastMonth_totle += energy.getGas();
 		}
-		EnergyEntity energy_lastMonth_totle = new EnergyEntity(lastMonthMonthly, null, electricity_lastMonth_totle,
-				gas_lastMonth_totle);
+		EnergyEntity energy_lastMonth_totle = new EnergyEntity(lastMonthMonthly, null, electricity_lastMonth_totle);
 
 		EnergyVO ret = new EnergyVO(monthly, energy_current_totle, energy_lastYear_totle, energy_lastMonth_totle);
 
 		// 同比
 		ret.setElectricity_yearGrowth(
 				FormulaUtils.getGrowth(energy_current_totle.getElectricity(), energy_lastYear_totle.getElectricity()));
-		ret.setGas_yearGrowth(FormulaUtils.getGrowth(energy_current_totle.getGas(), energy_lastYear_totle.getGas()));
 
 		// 环比
 		ret.setElectricity_monthGrowth(
 				FormulaUtils.getGrowth(energy_current_totle.getElectricity(), energy_lastMonth_totle.getElectricity()));
-		ret.setGas_monthGrowth(FormulaUtils.getGrowth(energy_current_totle.getGas(), energy_lastMonth_totle.getGas()));
 
 		return ret;
 	}

@@ -46,8 +46,7 @@ public class EnergyController {
 	ProductTypeService productTypeService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Output add(@RequestParam String monthly, @RequestParam Long enterpriseId, @RequestParam float electricity,
-			@RequestParam float gas) {
+	public Output add(@RequestParam String monthly, @RequestParam Long enterpriseId, @RequestParam float electricity) {
 		try {
 			EnergyEntity energy = energyService.findOne(monthly, enterpriseId);
 			if (energy != null) {
@@ -55,9 +54,8 @@ public class EnergyController {
 			}
 
 			BaseEnterpriseEntity enterprise = enterpriseService.findOneBase(enterpriseId);
-			energy = new EnergyEntity(monthly, enterprise, electricity, gas);
+			energy = new EnergyEntity(monthly, enterprise, electricity);
 			energy.setCreateTime(new Date());
-			//energy.setStatus(ApproveStatus.REPORT);
 			energyService.save(energy);
 
 			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
@@ -69,11 +67,11 @@ public class EnergyController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public Output add(@RequestParam Long energyId, @RequestParam String monthly, @RequestParam Long enterpriseId,
-			@RequestParam float electricity, @RequestParam float gas) {
+			@RequestParam float electricity) {
 		try {
 			BaseEnterpriseEntity enterprise = enterpriseService.findOneBase(enterpriseId);
 			EnergyEntity energy = energyService.findOne(energyId);
-			energyService.update(energy, monthly, enterprise, electricity, gas);
+			energyService.update(energy, monthly, enterprise, electricity);
 			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -324,7 +322,7 @@ public class EnergyController {
 			return new OutputList(null, ReturnStatus.FAILED.status(), e.getMessage());
 		}
 	}
-	
+
 	@RequestMapping(value = "/listPointEnterpriseRange", method = RequestMethod.POST)
 	public OutputList listPointEnterpriseRange(@RequestParam String monthlyStart, @RequestParam String monthlyEnd) {
 		try {
@@ -343,5 +341,5 @@ public class EnergyController {
 			return new OutputList(null, ReturnStatus.FAILED.status(), e.getMessage());
 		}
 	}
-	
+
 }

@@ -13,7 +13,7 @@ public interface EnergyService {
 	
 	void save(EnergyEntity energy);
 	
-	void update(EnergyEntity energy, String monthly, BaseEnterpriseEntity enterprise, float electricity, float gas);
+	void update(EnergyEntity energy, String monthly, BaseEnterpriseEntity enterprise, float electricity);
 	
 	void delete(List<Long> energyIds);
 	

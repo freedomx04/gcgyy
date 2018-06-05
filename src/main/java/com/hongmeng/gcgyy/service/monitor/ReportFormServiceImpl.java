@@ -105,9 +105,9 @@ public class ReportFormServiceImpl implements ReportFormService {
 	
 	@SuppressWarnings("serial")
 	public static HashMap<Integer, String> reportColumn = new HashMap<Integer, String>() {{
-		put(ReportFormType.ENERGY, "monthly, enterprise, energy_electricity, energy_gas");
+		put(ReportFormType.ENERGY, "monthly, enterprise, energy_electricity");
 		put(ReportFormType.BENEFIT, "monthly, enterprise, benefit_receivable, benefit_inventory, benefit_assets, benefit_debt");
-		put(ReportFormType.ECONOMIC, "monthly, enterprise, economic_industryAddition, economic_mainBusiness, economic_profit, economic_tax");
+		put(ReportFormType.ECONOMIC, "monthly, enterprise, economic_mainBusiness, economic_profit, economic_tax");
 		put(ReportFormType.NATIONALTAX, "monthly, enterprise, nationalTax_sale, nationalTax_taxes");
 		put(ReportFormType.LOCALTAX, "monthly, enterprise, localTax_taxes");
 	}};
@@ -140,14 +140,11 @@ public class ReportFormServiceImpl implements ReportFormService {
 	@SuppressWarnings("serial")
 	public static HashMap<Integer, String> exportColumn = new HashMap<Integer, String>() {{
 		put(ExportType.ENERGY_ENTERPRISE, "monthly, enterprise, "
-				+ "energy_electricity_current, lastYear, lastYear_growth, lastMonth_growth, "
-				+ "energy_gas_current, lastYear, lastYear_growth, lastMonth_growth");
+				+ "energy_electricity_current, lastYear, lastYear_growth, lastMonth_growth");
 		put(ExportType.ENERGY_PRODUCTTYPE, "monthly, productType, "
-				+ "energy_electricity_current, lastYear, lastYear_growth, lastMonth_growth, "
-				+ "energy_gas_current, lastMonth, lastYear_growth, lastMonth_growth");
+				+ "energy_electricity_current, lastYear, lastYear_growth, lastMonth_growth");
 		put(ExportType.ENERGY_AREA, "monthly, area, "
-				+ "energy_electricity_current, lastYear, lastYear_growth, lastMonth_growth, "
-				+ "energy_gas_current, lastMonth, lastYear_growth, lastMonth_growth");
+				+ "energy_electricity_current, lastYear, lastYear_growth, lastMonth_growth");
 		put(ExportType.BENEFIT_ENTERPRISE, "monthly, enterprise, "
 				+ "benefit_flowAssets_current, benefit_flowAssets_lastYear, lastYear_growth, "
 				+ "benefit_receivable_current, benefit_receivable_lastYear, lastYear_growth, "
@@ -170,23 +167,14 @@ public class ReportFormServiceImpl implements ReportFormService {
 				+ "benefit_assets_current, benefit_assets_lastYear, lastYear_growth, "
 				+ "benefit_debt_current, benefit_debt_lastYear, lastYear_growth");
 		put(ExportType.ECONOMIC_ENTERPRISE, "monthly, enterprise, "
-				+ "economic_industryAddition_current, lastYear_growth, economic_mainBusiness_current, lastYear_growth, "
+				+ "economic_mainBusiness_current, lastYear_growth, "
 				+ "economic_profit_current, lastYear_growth, economic_tax_current, lastYear_growth");
-				//+ "economic_industryAddition_endMonth_current, economic_industryAddition_endMonth_lastYear, lastYear_growth, "
-				//+ "economic_industryAddition_target, economic_industryAddition_target_percent,"
-				//+ "economic_mainBusiness_endMonth_current, economic_mainBusiness_endMonth_lastYear, lastYear_growth");
 		put(ExportType.ECONOMIC_PRODUCTTYPE, "monthly, productType, "
-				+ "economic_industryAddition_current, lastYear_growth, economic_mainBusiness_current, lastYear_growth, "
+				+ "economic_mainBusiness_current, lastYear_growth, "
 				+ "economic_profit_current, lastYear_growth, economic_tax_current, lastYear_growth");
-				//+ "economic_industryAddition_endMonth_current, economic_industryAddition_endMonth_lastYear, lastYear_growth, "
-				//+ "economic_industryAddition_target, economic_industryAddition_target_percent,"
-				//+ "economic_mainBusiness_endMonth_current, economic_mainBusiness_endMonth_lastYear, lastYear_growth");
 		put(ExportType.ECONOMIC_AREA, "monthly, area, "
-				+ "economic_industryAddition_current, lastYear_growth, economic_mainBusiness_current, lastYear_growth, "
+				+ "economic_mainBusiness_current, lastYear_growth, "
 				+ "economic_profit_current, lastYear_growth, economic_tax_current, lastYear_growth");
-				//+ "economic_industryAddition_endMonth_current, economic_industryAddition_endMonth_lastYear, lastYear_growth, "
-				//+ "economic_industryAddition_target, economic_industryAddition_target_percent,"
-				//+ "economic_mainBusiness_endMonth_current, economic_mainBusiness_endMonth_lastYear, lastYear_growth");
 		put(ExportType.NATIONALTAX_ENTERPRISE, "monthly, enterprise, nationalTax_sale, lastYear, lastYear_growth, "
 				+ "nationalTax_tax, lastYear, lastYear_growth");
 		put(ExportType.NATIONALTAX_PRODUCTTYPE, "monthly, productType, nationalTax_sale, lastYear, lastYear_growth, "
@@ -198,8 +186,7 @@ public class ReportFormServiceImpl implements ReportFormService {
 		put(ExportType.LOCALTAX_AREA, "monthly, area, localTax_tax, lastYear, lastYear_growth");
 		
 		put(ExportType.ENERGY_ENTERPRISE_MONTHLY, "monthly, enterprise, "
-				+ "energy_electricity_current, lastYear, lastYear_growth, lastMonth_growth, "
-				+ "energy_gas_current, lastMonth, lastYear_growth, lastMonth_growth");
+				+ "energy_electricity_current, lastYear, lastYear_growth, lastMonth_growth");
 		put(ExportType.BENEFIT_ENTERPRISE_MONTHLY, "monthly, enterprise, "
 				+ "benefit_flowAssets_current, benefit_flowAssets_lastYear, lastYear_growth, "
 				+ "benefit_receivable_current, benefit_receivable_lastYear, lastYear_growth, "
@@ -208,11 +195,8 @@ public class ReportFormServiceImpl implements ReportFormService {
 				+ "benefit_assets_current, benefit_assets_lastYear, lastYear_growth, "
 				+ "benefit_debt_current, benefit_debt_lastYear, lastYear_growth");
 		put(ExportType.ECONOMIC_ENTERPRISE_MONTHLY, "monthly, enterprise, "
-				+ "economic_industryAddition_current, lastYear_growth, economic_mainBusiness_current, lastYear_growth, "
+				+ "economic_mainBusiness_current, lastYear_growth, "
 				+ "economic_profit_current, lastYear_growth, economic_tax_current, lastYear_growth");
-				//+ "economic_industryAddition_endMonth_current, economic_industryAddition_endMonth_lastYear, lastYear_growth, "
-				//+ "economic_industryAddition_target, economic_industryAddition_target_percent,"
-				//+ "economic_mainBusiness_endMonth_current, economic_mainBusiness_endMonth_lastYear, lastYear_growth");
 		put(ExportType.NATIONALTAX_ENTERPRISE_MONTHLY, "monthly, enterprise, nationalTax_sale, lastYear, lastYear_growth, "
 				+ "nationalTax_tax, lastYear, lastYear_growth");
 		put(ExportType.LOCALTAX_ENTERPRISE_MONTHLY, "monthly, enterprise, localTax_tax, lastYear, lastYear_growth");
@@ -226,12 +210,10 @@ public class ReportFormServiceImpl implements ReportFormService {
 		put("productType", new ExcelCell("productType", 4500, "产业类别"));
 		put("area", new ExcelCell("area", 4500, "区域名称"));
 		put("energy_electricity", new ExcelCell("energy_electricity", 4500, "本月用电量(度)"));
-		put("energy_gas", new ExcelCell("energy_gas", 4500, "本月用气量(立方米)"));
 		put("benefit_receivable", new ExcelCell("benefit_receivable", 4500, "应收账款"));
 		put("benefit_inventory", new ExcelCell("benefit_inventory", 4500, "产存品存货"));
 		put("benefit_assets", new ExcelCell("benefit_assets", 4500, "资产总计"));
 		put("benefit_debt", new ExcelCell("benefit_debt", 4500, "负债总计"));
-		put("economic_industryAddition", new ExcelCell("economic_industryAddition", 4500, "本月止工业总产值"));
 		put("economic_mainBusiness", new ExcelCell("economic_mainBusiness", 4500, "本月止主营业务收入"));
 		put("economic_profit", new ExcelCell("economic_profit", 4500, "本月止利润总额"));
 		put("economic_tax", new ExcelCell("economic_tax", 4500 ,"本月止税金总额"));
@@ -249,7 +231,6 @@ public class ReportFormServiceImpl implements ReportFormService {
 		
 		// energy export
 		put("energy_electricity_current", new ExcelCell("energy_electricity_current", 4500, "本月用电量(度)"));
-		put("energy_gas_current", new ExcelCell("energy_gas_current", 4500, "本月用气量(立方米)"));
 		
 		// benefit export
 		put("benefit_flowAssets_current", new ExcelCell("benefit_flowAssets_current", 4500, "本月流动资产合计"));
@@ -266,12 +247,9 @@ public class ReportFormServiceImpl implements ReportFormService {
 		put("benefit_debt_lastYear", new ExcelCell("benefit_debt_lastYear", 4500, "去年同期负债合计"));
 		
 		// economic export
-		put("economic_industryAddition_current", new ExcelCell("economic_industryAddition_current", 4500, "本月止工业总产值"));
 		put("economic_mainBusiness_current", new ExcelCell("economic_mainBusiness_current", 4500, "本月止主营业务收入"));
 		put("economic_profit_current", new ExcelCell("economic_profit_current", 4500, "本月止利润总额"));
 		put("economic_tax_current", new ExcelCell("economic_tax_current", 4500, "本月止税金总额"));
-		put("economic_industryAddition_endMonth_current", new ExcelCell("economic_industryAddition_endMonth_current", 4500, "本月止工业总产值"));
-		put("economic_industryAddition_endMonth_lastYear", new ExcelCell("economic_industryAddition_endMonth_lastYear", 4500, "去年同期止工业总产值"));
 		put("economic_industryAddition_target", new ExcelCell("economic_industryAddition_target", 4500, "工业总产值年度目标数"));
 		put("economic_industryAddition_target_percent", new ExcelCell("economic_industryAddition_target_percent", 4500, "完成比例%"));
 		put("economic_mainBusiness_endMonth_current", new ExcelCell("economic_mainBusiness_endMonth_current", 4500, "本月止主营业务收入"));
@@ -565,19 +543,15 @@ public class ReportFormServiceImpl implements ReportFormService {
 		EnergyEntity energy_current = energy.getEnergy_current();
 		if (energy_current != null) {
 			row.createCell(2).setCellValue(FormulaUtils.convertDouble(energy_current.getElectricity()));
-			row.createCell(6).setCellValue(FormulaUtils.convertDouble(energy_current.getGas()));
 		} else {
 			row.createCell(2).setCellValue("-");
-			row.createCell(6).setCellValue("-");
 		}
 		
 		EnergyEntity energy_lastYear = energy.getEnergy_lastYear();
 		if (energy_lastYear != null) {
 			row.createCell(3).setCellValue(FormulaUtils.convertDouble(energy_lastYear.getElectricity()));
-			row.createCell(7).setCellValue(FormulaUtils.convertDouble(energy_lastYear.getGas()));
 		} else {
 			row.createCell(3).setCellValue("-");
-			row.createCell(7).setCellValue("-");
 		}
 		
 		String electricity_yearGrowth = energy.getElectricity_yearGrowth();
@@ -592,20 +566,6 @@ public class ReportFormServiceImpl implements ReportFormService {
 			row.createCell(5).setCellValue(FormulaUtils.convertPercent(electricity_monthGrowth));
 		} else {
 			row.createCell(5).setCellValue("-");
-		}
-		
-		String gas_yearGrowth = energy.getGas_yearGrowth();
-		if (gas_yearGrowth != null) {
-			row.createCell(8).setCellValue(FormulaUtils.convertPercent(gas_yearGrowth));
-		} else {
-			row.createCell(8).setCellValue("-");
-		}
-		
-		String gas_monthGrowth = energy.getGas_monthGrowth();
-		if (gas_monthGrowth != null) {
-			row.createCell(9).setCellValue(FormulaUtils.convertPercent(gas_monthGrowth));
-		} else {
-			row.createCell(9).setCellValue("-");
 		}
 	}
 	
@@ -690,71 +650,35 @@ public class ReportFormServiceImpl implements ReportFormService {
 	public void writeEconomic(HSSFRow row, EconomicVO economic) {
 		EconomicEntity economic_current = economic.getEconomic_current();
 		if (economic_current != null) {
-			row.createCell(2).setCellValue(FormulaUtils.convertDouble(economic_current.getIndustryAddition()));
-			row.createCell(4).setCellValue(FormulaUtils.convertDouble(economic_current.getMainBusiness()));
-			row.createCell(6).setCellValue(FormulaUtils.convertDouble(economic_current.getProfit()));
-			row.createCell(8).setCellValue(FormulaUtils.convertDouble(economic_current.getTax()));
+			row.createCell(2).setCellValue(FormulaUtils.convertDouble(economic_current.getMainBusiness()));
+			row.createCell(4).setCellValue(FormulaUtils.convertDouble(economic_current.getProfit()));
+			row.createCell(6).setCellValue(FormulaUtils.convertDouble(economic_current.getTax()));
 		} else {
 			row.createCell(2).setCellValue("-");
 			row.createCell(4).setCellValue("-");
 			row.createCell(6).setCellValue("-");
-			row.createCell(8).setCellValue("-");
-		}
-		
-		String industryAddition_yearGrowth = economic.getIndustryAddition_yearGrowth();
-		if (industryAddition_yearGrowth != null) {
-			row.createCell(3).setCellValue(FormulaUtils.convertPercent(industryAddition_yearGrowth));
-		} else {
-			row.createCell(3).setCellValue("-");
 		}
 		
 		String mainBusiness_yearGrowth = economic.getMainBusiness_yearGrowth();
 		if (mainBusiness_yearGrowth != null) {
-			row.createCell(5).setCellValue(FormulaUtils.convertPercent(mainBusiness_yearGrowth));
+			row.createCell(3).setCellValue(FormulaUtils.convertPercent(mainBusiness_yearGrowth));
 		} else {
-			row.createCell(5).setCellValue("-");
+			row.createCell(3).setCellValue("-");
 		}
 		
 		String profit_yearGrowth = economic.getProfit_yearGrowth();
 		if (profit_yearGrowth != null) {
-			row.createCell(7).setCellValue(FormulaUtils.convertPercent(profit_yearGrowth));
+			row.createCell(5).setCellValue(FormulaUtils.convertPercent(profit_yearGrowth));
 		} else {
-			row.createCell(7).setCellValue("-");
+			row.createCell(5).setCellValue("-");
 		}
 		
 		String tax_yearGrowth = economic.getTax_yearGrowth();
 		if (tax_yearGrowth != null) {
-			row.createCell(9).setCellValue(FormulaUtils.convertPercent(tax_yearGrowth));
+			row.createCell(7).setCellValue(FormulaUtils.convertPercent(tax_yearGrowth));
 		} else {
-			row.createCell(9).setCellValue("-");
+			row.createCell(7).setCellValue("-");
 		}
-		
-//		row.createCell(10).setCellValue(economic_current != null ? FormulaUtils.convertDouble(economic.getIndustryAddition_current_endMonth()) : 0);
-//		row.createCell(11).setCellValue(economic_current != null ? FormulaUtils.convertDouble(economic.getIndustryAddition_lastYear_endMonth()) : 0);
-//		String industryAddition_endMonth_yearGrowth = economic.getIndustryAddition_endMonth_yearGrowth();
-//		if (industryAddition_endMonth_yearGrowth != null) {
-//			row.createCell(12).setCellValue(FormulaUtils.convertPercent(industryAddition_endMonth_yearGrowth));
-//		} else {
-//			row.createCell(12).setCellValue("-");
-//		}
-		
-//		EconomicTargetEntity target = economic.getIndustryAddition_Target();
-//		row.createCell(13).setCellValue(target != null ? FormulaUtils.convertDouble(target.getValue()) : 0);
-//		String industryAddition_complete = economic.getIndustryAddition_complete();
-//		if (industryAddition_complete != null) {
-//			row.createCell(14).setCellValue(FormulaUtils.convertPercent(industryAddition_complete));
-//		} else {
-//			row.createCell(14).setCellValue("-");
-//		}
-		
-//		row.createCell(15).setCellValue(economic_current != null ? FormulaUtils.convertDouble(economic.getMainBusiness_current_endMonth()) : 0);
-//		row.createCell(16).setCellValue(economic_current != null ? FormulaUtils.convertDouble(economic.getMainBusiness_lastYear_endMonth()) : 0);
-//		String mainBusiness_endMonth_yearGrowth = economic.getMainBusiness_endMonth_yearGrowth();
-//		if (mainBusiness_endMonth_yearGrowth != null) {
-//			row.createCell(17).setCellValue(FormulaUtils.convertPercent(mainBusiness_endMonth_yearGrowth));
-//		} else {
-//			row.createCell(17).setCellValue("-");
-//		}
 	}
 	
 	public void writeNationalTax(HSSFRow row, NationalTaxVO nationalTax) {
@@ -947,7 +871,6 @@ public class ReportFormServiceImpl implements ReportFormService {
 			String monthly = row.getCell(0).getStringCellValue();
 			String enterpriseName = row.getCell(1).getStringCellValue();
 			float electricity = 0;
-			float gas = 0;
 			
 			cell = row.getCell(2);
 			if (cell != null) {
@@ -955,13 +878,6 @@ public class ReportFormServiceImpl implements ReportFormService {
 					throw new IllegalArgumentException("argument error");
 				}
 				electricity = (float) cell.getNumericCellValue();
-			}
-			cell = row.getCell(3);
-			if (cell != null) {
-				if (cell.getCellType() != HSSFCell.CELL_TYPE_NUMERIC) {
-					throw new IllegalArgumentException("argument error");
-				}
-				gas = (float) cell.getNumericCellValue();
 			}
 			
 			BaseEnterpriseEntity enterprise = enterpriseService.findByNameBase(enterpriseName);
@@ -971,9 +887,9 @@ public class ReportFormServiceImpl implements ReportFormService {
 			
 			EnergyEntity energy = energyService.findOne(monthly, enterprise.getId());
 			if (energy != null) {
-				energyService.update(energy, monthly, enterprise, electricity, gas);
-			} else if (electricity != 0 || gas != 0) {
-				energy = new EnergyEntity(monthly, enterprise, electricity, gas);
+				energyService.update(energy, monthly, enterprise, electricity);
+			} else if (electricity != 0) {
+				energy = new EnergyEntity(monthly, enterprise, electricity);
 				energy.setCreateTime(new Date());
 				energyService.save(energy);
 			}
@@ -994,7 +910,6 @@ public class ReportFormServiceImpl implements ReportFormService {
 			
 			String monthly = row.getCell(0).getStringCellValue();
 			String enterpriseName = row.getCell(1).getStringCellValue();
-			float industryAddition = 0;
 			float mainBusiness = 0;
 			float profit = 0;
 			float tax = 0;
@@ -1004,23 +919,16 @@ public class ReportFormServiceImpl implements ReportFormService {
 				if (cell.getCellType() != HSSFCell.CELL_TYPE_NUMERIC) {
 					throw new IllegalArgumentException("argument error");
 				}
-				industryAddition = (float) cell.getNumericCellValue();
+				mainBusiness = (float) cell.getNumericCellValue();
 			}
 			cell = row.getCell(3);
 			if (cell != null) {
 				if (cell.getCellType() != HSSFCell.CELL_TYPE_NUMERIC) {
 					throw new IllegalArgumentException("argument error");
 				}
-				mainBusiness = (float) cell.getNumericCellValue();
-			}
-			cell = row.getCell(4);
-			if (cell != null) {
-				if (cell.getCellType() != HSSFCell.CELL_TYPE_NUMERIC) {
-					throw new IllegalArgumentException("argument error");
-				}
 				profit = (float) cell.getNumericCellValue();
 			}
-			cell = row.getCell(5);
+			cell = row.getCell(4);
 			if (cell != null) {
 				if (cell.getCellType() != HSSFCell.CELL_TYPE_NUMERIC) {
 					throw new IllegalArgumentException("argument error");
@@ -1035,9 +943,9 @@ public class ReportFormServiceImpl implements ReportFormService {
 			
 			EconomicEntity economic = economicService.findOne(monthly, enterprise.getId());
 			if (economic != null) {
-				economicService.update(economic, monthly, enterprise, industryAddition, mainBusiness, profit, tax);
-			} else if (industryAddition != 0 || mainBusiness != 0 || profit != 0 || tax != 0) {
-				economic = new EconomicEntity(monthly, enterprise, industryAddition, mainBusiness, profit, tax);
+				economicService.update(economic, monthly, enterprise, mainBusiness, profit, tax);
+			} else if (mainBusiness != 0 || profit != 0 || tax != 0) {
+				economic = new EconomicEntity(monthly, enterprise, mainBusiness, profit, tax);
 				economic.setCreateTime(new Date());
 				economicService.save(economic);
 			}
