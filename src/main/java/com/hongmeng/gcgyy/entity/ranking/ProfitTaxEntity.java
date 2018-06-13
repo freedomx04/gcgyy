@@ -23,8 +23,6 @@ public class ProfitTaxEntity extends BaseEntity {
 
 	private Double yearGrowth; // 同比增长
 
-	private Integer sort; // 增幅排序
-	
 	public ProfitTaxEntity() {
 		// TODO Auto-generated constructor stub
 	}
@@ -35,13 +33,12 @@ public class ProfitTaxEntity extends BaseEntity {
 		this.county = county;
 	}
 
-	public ProfitTaxEntity(String monthly, CountyEntity county, Double total, Double yearGrowth, Integer sort) {
+	public ProfitTaxEntity(String monthly, CountyEntity county, Double total, Double yearGrowth) {
 		super();
 		this.monthly = monthly;
 		this.county = county;
 		this.total = total;
 		this.yearGrowth = yearGrowth;
-		this.sort = sort;
 	}
 
 	public String getMonthly() {
@@ -74,14 +71,6 @@ public class ProfitTaxEntity extends BaseEntity {
 
 	public void setYearGrowth(Double yearGrowth) {
 		this.yearGrowth = yearGrowth;
-	}
-
-	public Integer getSort() {
-		return sort;
-	}
-
-	public void setSort(Integer sort) {
-		this.sort = sort;
 	}
 
 }

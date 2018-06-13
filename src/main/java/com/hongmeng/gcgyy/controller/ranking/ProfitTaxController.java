@@ -34,7 +34,7 @@ public class ProfitTaxController {
 	CountyService countyService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Output add(String monthly, Long countyId, Double total, Double yearGrowth, Integer sort) {
+	public Output add(String monthly, Long countyId, Double total, Double yearGrowth) {
 		try {
 			ProfitTaxEntity tax = taxService.findOne(monthly, countyId);
 			if (tax != null) {
@@ -42,7 +42,7 @@ public class ProfitTaxController {
 			}
 
 			CountyEntity county = countyService.findOne(countyId);
-			tax = new ProfitTaxEntity(monthly, county, total, yearGrowth, sort);
+			tax = new ProfitTaxEntity(monthly, county, total, yearGrowth);
 			tax.setCreateTime(new Date());
 			taxService.save(tax);
 
@@ -54,12 +54,11 @@ public class ProfitTaxController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public Output add(Long taxId, String monthly, Long countyId, Double total, Double yearGrowth, Integer sort) {
+	public Output add(Long taxId, String monthly, Long countyId, Double total, Double yearGrowth) {
 		try {
 			ProfitTaxEntity tax = taxService.findOne(taxId);
 			tax.setTotal(total);
 			tax.setYearGrowth(yearGrowth);
-			tax.setSort(sort);
 
 			taxService.save(tax);
 			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());

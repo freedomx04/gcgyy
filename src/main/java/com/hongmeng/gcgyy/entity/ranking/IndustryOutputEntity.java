@@ -12,21 +12,19 @@ import com.hongmeng.gcgyy.entity.baseData.CountyEntity;
 @Entity
 @Table(name = "ranking_industry_output")
 public class IndustryOutputEntity extends BaseEntity {
-	
+
 	private String monthly; // 月报表时间
 
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "county_id")
 	private CountyEntity county; // 县区
-	
-	private Integer enterpriseNum;	// 企业户数
-	
+
+	private Integer enterpriseNum; // 企业户数
+
 	private Double total; // 本月止累计
 
 	private Double yearGrowth; // 同比增长
 
-	private Integer sort; // 增幅排序
-	
 	public IndustryOutputEntity() {
 		// TODO Auto-generated constructor stub
 	}
@@ -38,14 +36,13 @@ public class IndustryOutputEntity extends BaseEntity {
 	}
 
 	public IndustryOutputEntity(String monthly, CountyEntity county, Integer enterpriseNum, Double total,
-			Double yearGrowth, Integer sort) {
+			Double yearGrowth) {
 		super();
 		this.monthly = monthly;
 		this.county = county;
 		this.enterpriseNum = enterpriseNum;
 		this.total = total;
 		this.yearGrowth = yearGrowth;
-		this.sort = sort;
 	}
 
 	public String getMonthly() {
@@ -88,12 +85,4 @@ public class IndustryOutputEntity extends BaseEntity {
 		this.yearGrowth = yearGrowth;
 	}
 
-	public Integer getSort() {
-		return sort;
-	}
-
-	public void setSort(Integer sort) {
-		this.sort = sort;
-	}
-	
 }

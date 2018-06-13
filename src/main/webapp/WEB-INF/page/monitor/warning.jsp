@@ -90,16 +90,12 @@
 		{{ } else { }}
 		<th>月份</th>
 		{{ } }}
-		<th>工业总产值同比增长%</th>
-		<th>工业总产值环比增长%</th>
 		<th>主营业务收入同比增长%</th>
 		<th>主营业务收入环比增长%</th>
 		<th>国税同比增长%</th>
 		<th>国税环比增长%</th>
 		<th>地税同比增长%</th>
 		<th>地税环比增长%</th>
-		<th>气能耗同比增长%</th>
-		<th>气能耗环比增长%</th>
 		<th>电能耗同比增长%</th>
 		<th>电能耗环比增长%</th>
 	</tr>
@@ -113,16 +109,12 @@
 	{{ }else{ }}
 	<td>{{=data.monthly || ""}}</td>
 	{{ } }}
-	<td class="{{=$k.util.getStatusClass(data.industryAddition_yearGrowth)}}">{{=data.industryAddition_yearGrowth != null ? (data.industryAddition_yearGrowth*100).toFixed(2) : "-"}}</td>
-	<td class="{{=$k.util.getStatusClass(data.industryAddition_monthGrowth)}}">{{=data.industryAddition_monthGrowth != null ? (data.industryAddition_monthGrowth*100).toFixed(2) : "-"}}</td>
 	<td class="{{=$k.util.getStatusClass(data.mainBusiness_yearGrowth)}}">{{=data.mainBusiness_yearGrowth != null ? (data.mainBusiness_yearGrowth*100).toFixed(2) : "-"}}</td>
 	<td class="{{=$k.util.getStatusClass(data.mainBusiness_monthGrowth)}}">{{=data.mainBusiness_monthGrowth != null ? (data.mainBusiness_monthGrowth*100).toFixed(2) : "-"}}</td>
 	<td class="{{=$k.util.getStatusClass(data.nationalTax_yearGrowth)}}">{{=data.nationalTax_yearGrowth != null ? (data.nationalTax_yearGrowth*100).toFixed(2) : "-"}}</td>
 	<td class="{{=$k.util.getStatusClass(data.nationalTax_monthGrowth)}}">{{=data.nationalTax_monthGrowth != null ? (data.nationalTax_monthGrowth*100).toFixed(2) : "-"}}</td>
 	<td class="{{=$k.util.getStatusClass(data.localTax_yearGrowth)}}">{{=data.localTax_yearGrowth != null ? (data.localTax_yearGrowth*100).toFixed(2) : "-"}}</td>
 	<td class="{{=$k.util.getStatusClass(data.localTax_monthGrowth)}}">{{=data.localTax_monthGrowth != null ? (data.localTax_monthGrowth*100).toFixed(2) : "-"}}</td>
-	<td class="{{=$k.util.getStatusClass(data.gas_yearGrowth)}}">{{=data.gas_yearGrowth != null ? (data.gas_yearGrowth*100).toFixed(2) : "-"}}</td>
-	<td class="{{=$k.util.getStatusClass(data.gas_monthGrowth)}}">{{=data.gas_monthGrowth != null ? (data.gas_monthGrowth*100).toFixed(2) : "-"}}</td>
 	<td class="{{=$k.util.getStatusClass(data.electricity_yearGrowth)}}">{{=data.electricity_yearGrowth != null ? (data.electricity_yearGrowth*100).toFixed(2) : "-"}}</td>
 	<td class="{{=$k.util.getStatusClass(data.electricity_monthGrowth)}}">{{=data.electricity_monthGrowth != null ? (data.electricity_monthGrowth*100).toFixed(2) : "-"}}</td>
 </tr>

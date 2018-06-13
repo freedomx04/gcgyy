@@ -24,17 +24,17 @@ import com.hongmeng.gcgyy.service.ranking.IndustryOutputService;
 @RestController
 @RequestMapping("industryOutput")
 public class IndustryOutputController {
-	
+
 	static Logger log = LoggerFactory.getLogger(IndustryOutputController.class);
-	
+
 	@Autowired
 	IndustryOutputService outputService;
-	
+
 	@Autowired
 	CountyService countyService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Output add(String monthly, Long countyId, Integer enterpriseNum, Double total, Double yearGrowth, Integer sort) {
+	public Output add(String monthly, Long countyId, Integer enterpriseNum, Double total, Double yearGrowth) {
 		try {
 			IndustryOutputEntity output = outputService.findOne(monthly, countyId);
 			if (output != null) {
@@ -42,7 +42,7 @@ public class IndustryOutputController {
 			}
 
 			CountyEntity county = countyService.findOne(countyId);
-			output = new IndustryOutputEntity(monthly, county, enterpriseNum, total, yearGrowth, sort);
+			output = new IndustryOutputEntity(monthly, county, enterpriseNum, total, yearGrowth);
 			output.setCreateTime(new Date());
 			outputService.save(output);
 
@@ -54,13 +54,13 @@ public class IndustryOutputController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public Output add(Long outputId, String monthly, Long countyId, Integer enterpriseNum, Double total, Double yearGrowth, Integer sort) {
+	public Output add(Long outputId, String monthly, Long countyId, Integer enterpriseNum, Double total,
+			Double yearGrowth) {
 		try {
 			IndustryOutputEntity output = outputService.findOne(outputId);
 			output.setEnterpriseNum(enterpriseNum);
 			output.setTotal(total);
 			output.setYearGrowth(yearGrowth);
-			output.setSort(sort);
 
 			outputService.save(output);
 			return new Output(null, ReturnStatus.SUCCESS.status(), ReturnStatus.SUCCESS.msg());

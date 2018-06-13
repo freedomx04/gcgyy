@@ -13,10 +13,6 @@ public class AlertEnterpriseVO {
 	private BaseEnterpriseEntity enterprise; // 企业
 
 	// 同比，环比
-	private String industryAddition_yearGrowth; // 本月止工业总产值的同比增幅
-
-	private String industryAddition_monthGrowth; // 本月止工业总产值的环比增幅
-
 	private String mainBusiness_yearGrowth; // 本月止主营业务收入的同比增幅
 
 	private String mainBusiness_monthGrowth; // 本月止主营业务收入的环比增幅
@@ -32,10 +28,6 @@ public class AlertEnterpriseVO {
 	private String electricity_yearGrowth; // 本月用电量的同比增幅
 
 	private String electricity_monthGrowth;// 本月用电量的环比增幅
-
-	private String gas_yearGrowth; // 本月用气量的同比增幅
-
-	private String gas_monthGrowth;// 本月用气量的环比增幅
 
 	// 数据
 	private EconomicEntity economic_current; // 当月经济运行
@@ -85,22 +77,6 @@ public class AlertEnterpriseVO {
 
 	public void setEnterprise(BaseEnterpriseEntity enterprise) {
 		this.enterprise = enterprise;
-	}
-
-	public String getIndustryAddition_yearGrowth() {
-		return industryAddition_yearGrowth;
-	}
-
-	public void setIndustryAddition_yearGrowth(String industryAddition_yearGrowth) {
-		this.industryAddition_yearGrowth = industryAddition_yearGrowth;
-	}
-
-	public String getIndustryAddition_monthGrowth() {
-		return industryAddition_monthGrowth;
-	}
-
-	public void setIndustryAddition_monthGrowth(String industryAddition_monthGrowth) {
-		this.industryAddition_monthGrowth = industryAddition_monthGrowth;
 	}
 
 	public String getMainBusiness_yearGrowth() {
@@ -165,22 +141,6 @@ public class AlertEnterpriseVO {
 
 	public void setElectricity_monthGrowth(String electricity_monthGrowth) {
 		this.electricity_monthGrowth = electricity_monthGrowth;
-	}
-
-	public String getGas_yearGrowth() {
-		return gas_yearGrowth;
-	}
-
-	public void setGas_yearGrowth(String gas_yearGrowth) {
-		this.gas_yearGrowth = gas_yearGrowth;
-	}
-
-	public String getGas_monthGrowth() {
-		return gas_monthGrowth;
-	}
-
-	public void setGas_monthGrowth(String gas_monthGrowth) {
-		this.gas_monthGrowth = gas_monthGrowth;
 	}
 
 	public EconomicEntity getEconomic_current() {

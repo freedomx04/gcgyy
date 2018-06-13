@@ -43,8 +43,7 @@
         <tr>
 			<th class="table-id">#</th>
 			<th class="table-name">月份</th>
-            <th>本月用电量（度）</th>
-            <th>本月用气量（立方米）</th>
+            <th>本月用电量（万千瓦时）</th>
         </tr>
 	</thead>
 	<tbody>
@@ -53,7 +52,6 @@
 			<td id="{{=data.energy_current != null ? data.energy_current.id : ""}}">{{=index+1}}</td>
 			<td>{{=data.monthly}}</td>
 			<td class="am-text-primary">{{=data.energy_current != null ? data.energy_current.electricity : "-"}}</td>
-			<td class="am-text-primary">{{=data.energy_current != null ? data.energy_current.gas : "-"}}</td>
 		</tr>
 		{{~}}
 	</tbody>

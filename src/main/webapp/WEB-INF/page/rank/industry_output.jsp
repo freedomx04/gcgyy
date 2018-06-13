@@ -102,13 +102,6 @@
 						<input type="text" name="yearGrowth" id="yearGrowth" class="am-form-field"/>
 		    		</div>
 				</div>
-
-				<div class="am-form-group">
-					<label for="sort" class="am-u-sm-3 am-form-label font-normal">增幅排序:</label>
-		    		<div class="am-u-sm-9 padding-left-o">
-						<input type="text" name="sort" id="sort" class="am-form-field"/>
-		    		</div>
-				</div>
 			</form>
 			<button type="button" class="am-btn am-btn-primary am-hide" data-am-modal-cancel>确定</button>
 		</div>
@@ -127,7 +120,6 @@
 		<th>企业户数</th>
 		<th>本月止累计(万元)</th>
 		<th>同比±%</th>
-		<th>增幅排序</th>
 	</tr>
 </thead>
 <tbody>
@@ -139,7 +131,6 @@
 			<td>{{=industryOutput.enterpriseNum || ""}}</td>
 			<td>{{=industryOutput.total != null ? industryOutput.total : ""}}</td>
 			<td>{{=industryOutput.yearGrowth != null ? industryOutput.yearGrowth.toFixed(2) : ""}}</td>
-			<td>{{=industryOutput.sort || ""}}</td>
 		</tr>
 	{{~}}
 </tbody>
@@ -196,9 +187,6 @@
 									$.each(data.data,function(ky,vl){
 										if(ky == "county") {
 											$dialog.find("#county").find('option[value="'+vl.id+'"]').attr('selected', true);
-											if (vl.name == "全市总计") {
-												$dialog.find("#sort").rules("remove");
-											}
 										} else if (ky == "yearGrowth"&& vl != null) {
 											$dialog.find("[name='"+ky+"']").val(vl.toFixed(2));
 										} else {
@@ -225,7 +213,6 @@
 														enterpriseNum: $industryOutputInputForm.find("#enterpriseNum").val(),
 														total: $industryOutputInputForm.find("#total").val(),
 														yearGrowth: $industryOutputInputForm.find("#yearGrowth").val(),
-														sort: $industryOutputInputForm.find("#sort").val()
 													},
 													success: function(data) {
 														$modal.close($dialog.remove());
@@ -404,7 +391,6 @@
 				      rules: {
 				    	  county: "required",
 				    	  yearGrowth: {required: true, number: true},
-				    	  sort: {required: true, digits: true},
 				    	  total: {required: true, number: true},
 				    	  enterpriseNum: {required: true, digits: true}
 				      }

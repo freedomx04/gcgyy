@@ -95,13 +95,6 @@
 						<input type="text" name="yearGrowth" id="yearGrowth" class="am-form-field"/>
 		    		</div>
 				</div>
-
-				<div class="am-form-group">
-					<label for="sort" class="am-u-sm-3 am-form-label font-normal">绝对额排序:</label>
-		    		<div class="am-u-sm-9 padding-left-o">
-						<input type="text" name="sort" id="sort" class="am-form-field"/>
-		    		</div>
-				</div>
 			</form>
 			<button type="button" class="am-btn am-btn-primary am-hide" data-am-modal-cancel>确定</button>
 		</div>
@@ -119,7 +112,6 @@
 		<th>县区名称</th>
 		<th>本月止累计(万元)</th>
 		<th>同比±%</th>
-		<th>绝对额排序</th>
 	</tr>
 </thead>
 <tbody>
@@ -130,7 +122,6 @@
 			<td class="ellipsis">{{=(profitTax.county != null ? profitTax.county.name : "" )}}</td>
 			<td>{{=profitTax.total != null ? profitTax.total : ""}}</td>
 			<td>{{=profitTax.yearGrowth != null ? profitTax.yearGrowth.toFixed(2) : ""}}</td>
-			<td>{{=profitTax.sort || ""}}</td>
 		</tr>
 	{{~}}
 </tbody>
@@ -187,9 +178,6 @@
 									$.each(data.data,function(ky,vl){
 										if(ky == "county") {
 											$dialog.find("#county").find('option[value="'+vl.id+'"]').attr('selected', true);
-											if (vl.name == "全市总计") {
-												$dialog.find("#sort").rules("remove");
-											}
 										} else if (ky == "yearGrowth"&& vl != null) {
 											$dialog.find("[name='"+ky+"']").val(vl.toFixed(2));
 										} else {
@@ -215,7 +203,6 @@
 														taxId: $profitTaxInputForm.find("#id").val(),
 														total: $profitTaxInputForm.find("#total").val(),
 														yearGrowth: $profitTaxInputForm.find("#yearGrowth").val(),
-														sort: $profitTaxInputForm.find("#sort").val()
 													},
 													success: function(data) {
 														$modal.close($dialog.remove());
@@ -394,7 +381,6 @@
 				      rules: {
 				    	  county: "required",
 				    	  yearGrowth: {required: true, number: true},
-				    	  sort: {required: true, digits: true},
 				    	  total: {required: true, number: true}
 				      }
 			    });

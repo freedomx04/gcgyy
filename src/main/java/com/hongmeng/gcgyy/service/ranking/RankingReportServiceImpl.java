@@ -77,9 +77,9 @@ public class RankingReportServiceImpl implements RankingReportService {
 	public static HashMap<Integer, String> reportColumn = new HashMap<Integer, String>() {{
 		put(RankingReportType.INDUSTRYADDITION, "monthly, county, month_growth, total_growth, sort");
 		put(RankingReportType.MAINBUSINESS, "monthly, county, total, year_growth, sort");
-		put(RankingReportType.PROFITTAX, "monthly, county, total, year_growth, absolute_sort");
+		put(RankingReportType.PROFITTAX, "monthly, county, total, year_growth");
 		put(RankingReportType.ELECTRICITY, "monthly, county, total_electricity, year_growth, sort");
-		put(RankingReportType.INDUSTRYOUTPUT, "monthly, county, enterprise_num, total, year_growth, sort");
+		put(RankingReportType.INDUSTRYOUTPUT, "monthly, county, enterprise_num, total, year_growth");
 		put(RankingReportType.VAT, "monthly, county, total, year_growth");
 		put(RankingReportType.PROFIT, "monthly, county, total, year_growth, sort");
 	}};
@@ -223,10 +223,9 @@ public class RankingReportServiceImpl implements RankingReportService {
 					if (tax != null) {
 						tax.setTotal(total);
 						tax.setYearGrowth(yearGrowth);
-						tax.setSort(sort);
 						taxService.save(tax);
 					} else {
-						tax = new ProfitTaxEntity(monthly, county, total, yearGrowth, sort);
+						tax = new ProfitTaxEntity(monthly, county, total, yearGrowth);
 						tax.setCreateTime(new Date());
 						taxService.save(tax);
 					}
@@ -276,7 +275,6 @@ public class RankingReportServiceImpl implements RankingReportService {
 				Integer enterpriseNum = null;
 				Double total = null;
 				Double yearGrowth = null;
-				Integer sort = null;
 				
 				cell = row.getCell(2);
 				if (cell != null) {
@@ -302,14 +300,6 @@ public class RankingReportServiceImpl implements RankingReportService {
 					yearGrowth = cell.getNumericCellValue();
 				}
 				
-				cell = row.getCell(5);
-				if (cell != null) {
-					if (cell.getCellType() != HSSFCell.CELL_TYPE_NUMERIC) {
-						throw new IllegalArgumentException("argument error");
-					}
-					sort = (int) cell.getNumericCellValue();
-				}
-				
 				CountyEntity county = countyService.findByName(countyName);
 				if (county == null) {
 					continue;
@@ -320,10 +310,9 @@ public class RankingReportServiceImpl implements RankingReportService {
 					output.setEnterpriseNum(enterpriseNum);
 					output.setTotal(total);
 					output.setYearGrowth(yearGrowth);
-					output.setSort(sort);
 					outputService.save(output);
 				} else {
-					output = new IndustryOutputEntity(monthly, county, enterpriseNum, total, yearGrowth, sort);
+					output = new IndustryOutputEntity(monthly, county, enterpriseNum, total, yearGrowth);
 					output.setCreateTime(new Date());
 					outputService.save(output);
 				}
@@ -467,9 +456,6 @@ public class RankingReportServiceImpl implements RankingReportService {
 					if (tax.getYearGrowth() != null) {
 						row.createCell(3).setCellValue(tax.getYearGrowth());
 					}
-					if (tax.getSort() != null) {
-						row.createCell(4).setCellValue(tax.getSort());
-					}					
 				}
 				colnum++;
 			}
@@ -515,9 +501,6 @@ public class RankingReportServiceImpl implements RankingReportService {
 					}
 					if (output.getYearGrowth() != null) {
 						row.createCell(4).setCellValue(output.getYearGrowth());
-					}
-					if (output.getSort() != null) {
-						row.createCell(5).setCellValue(output.getSort());
 					}
 				}
 				colnum++;
