@@ -209,7 +209,7 @@ public class ReportFormServiceImpl implements ReportFormService {
 		put("enterprise", new ExcelCell("enterprise", 8000, "企业名称"));
 		put("productType", new ExcelCell("productType", 4500, "产业类别"));
 		put("area", new ExcelCell("area", 4500, "区域名称"));
-		put("energy_electricity", new ExcelCell("energy_electricity", 4500, "本月用电量(度)"));
+		put("energy_electricity", new ExcelCell("energy_electricity", 4500, "本月止用电量(万千瓦时)"));
 		put("benefit_receivable", new ExcelCell("benefit_receivable", 4500, "应收账款"));
 		put("benefit_inventory", new ExcelCell("benefit_inventory", 4500, "产存品存货"));
 		put("benefit_assets", new ExcelCell("benefit_assets", 4500, "资产总计"));
@@ -230,7 +230,7 @@ public class ReportFormServiceImpl implements ReportFormService {
 		put("lastMonth_growth", new ExcelCell("lastMonth_growth", 3000, "环比增幅%"));
 		
 		// energy export
-		put("energy_electricity_current", new ExcelCell("energy_electricity_current", 4500, "本月用电量(度)"));
+		put("energy_electricity_current", new ExcelCell("energy_electricity_current", 4500, "本月止用电量(万千瓦时)"));
 		
 		// benefit export
 		put("benefit_flowAssets_current", new ExcelCell("benefit_flowAssets_current", 4500, "本月流动资产合计"));

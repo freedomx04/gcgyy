@@ -43,7 +43,7 @@
         <tr>
 			<th class="table-id">#</th>
 			<th class="table-name">月份</th>
-            <th>本月用电量（万千瓦时）</th>
+            <th>本月止用电量（万千瓦时）</th>
         </tr>
 	</thead>
 	<tbody>
